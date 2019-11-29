@@ -36,6 +36,9 @@
                     <li>
                         <a href="{{route('them-san-pham')}}">Thêm sản phẩm</a>
                     </li>
+                    <li>
+                        <a href="{{route('sua-san-pham')}}">Sửa sản phẩm</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

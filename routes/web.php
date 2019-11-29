@@ -69,6 +69,20 @@ Route::group(['prefix' => 'admin'], function () {
 			'as'=>'xoa-san-pham',
 			'uses'=>'AdminController@getXoasanpham'
 		]);
+
+		Route::get('suasanpham', [
+			'as'=>'sua-san-pham',
+			'uses'=>'AdminController@getSuasanpham'
+		]);
+
+		Route::post('suasanpham', [
+			'as'=>'sua-san-pham',
+			'uses'=>'AdminController@postSuasanpham'
+		]);
+
+		Route::get('timkiemAjax', 'SearchController@getTimkiemAjax')->name('timkiemAjax');
+
+		Route::get('hienthiAjax', 'SearchController@getHienthiAjax')->name('hienthiAjax');
 	});
 
 	
