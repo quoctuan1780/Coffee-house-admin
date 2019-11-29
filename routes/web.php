@@ -64,6 +64,11 @@ Route::group(['prefix' => 'admin'], function () {
 			'as'=>'them-san-pham',
 			'uses'=>'AdminController@postThemsanpham'
 		]);
+
+		Route::get('xoasanpham/{masp}', [
+			'as'=>'xoa-san-pham',
+			'uses'=>'AdminController@getXoasanpham'
+		]);
 	});
 
 	

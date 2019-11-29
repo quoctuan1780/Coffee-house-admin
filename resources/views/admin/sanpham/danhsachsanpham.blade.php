@@ -7,6 +7,9 @@
                 <h1 class="page-header">Danh sách sản phẩm
                     {{-- <small>List</small> --}}
                 </h1>
+                @if(Session('xoathanhcong'))
+                    <div class="alert alert-success">{{ Session('xoathanhcong') }}</div>
+                @endif
             </div>
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -41,7 +44,7 @@
                             @else
                                 <td>Cũ</td>
                             @endif
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#">Xóa</a></td>
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-san-pham', $sp->masp) }}">Xóa</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Sửa</a></td>
                         </tr>
                     @endforeach

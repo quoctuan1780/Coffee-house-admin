@@ -41,8 +41,12 @@ class AdminController extends Controller
             ['tensp' => $req->tensp, 'maloaisp' => $req->loaisp, 'mota' => $req->mota, 'gia' => $req->gia, 'giakm' => $req->giakm,
             'hinhanh' => $req->hinhanh, 'dvt' => $req->dvt]
         );
-
         return redirect()->back()->with(['Thanhcong' => 'Thêm sản phẩm thành công']);
+    }
+
+    public function getXoasanpham($masp){
+        DB::table('sanpham')->where('masp', '=', $masp)->delete();
+        return redirect()->back()->with(['xoathanhcong' => 'Xóa sản phẩm thành công']);
     }
 
 }
