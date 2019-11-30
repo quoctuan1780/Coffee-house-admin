@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Coffee House Admin</a>
+        <a class="navbar-brand" href="{{ route('trang-chu') }}">Coffee House Admin</a>
     </div>
     <!-- /.navbar-header -->
 

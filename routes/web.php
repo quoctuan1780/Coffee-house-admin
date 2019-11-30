@@ -19,6 +19,11 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
 
+	Route::get('index', [
+		'as'=>'trang-chu',
+		'uses'=>'AdminController@getTrangchu'
+	]);
+
 	Route::get('dangnhap', [
 		'as'=>'dang-nhap',
 		'uses'=>'AccountController@getDangnhap'
@@ -84,8 +89,28 @@ Route::group(['prefix' => 'admin'], function () {
 
 		Route::get('hienthiAjax', 'SearchController@getHienthiAjax')->name('hienthiAjax');
 	});
-
 	
+	Route::group(['prefix' => 'loaisanpham'], function () {
+		Route::get('danhsachloaisanpham', [
+			'as'=>'danh-sach-loai-san-pham',
+			'uses'=>'AdminController@getLoaisanpham'
+		]);
+
+		Route::get('themloaisanpham', [
+			'as'=>'them-loai-san-pham',
+			'uses'=>'AdminController@getThemloaisanpham'
+		]);
+
+		Route::post('themloaisanpham', [
+			'as'=>'them-loai-san-pham',
+			'uses'=>'AdminController@postThemloaisanpham'
+		]);
+
+		Route::get('xoaloaisanpham/{maloaisp}', [
+			'as'=>'xoa-loai-san-pham',
+			'uses'=>'AdminController@getXoaloaisanpham'
+		]);
+	});
 });
 
 

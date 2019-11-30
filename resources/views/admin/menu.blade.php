@@ -13,16 +13,16 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="{{ route('trang-chu') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Loại sản phẩm<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Danh sách loại sản phẩm</a>
+                        <a href="{{ route('danh-sach-loai-san-pham') }}">Danh sách loại sản phẩm</a>
                     </li>
                     <li>
-                        <a href="#">Thêm loại sản phẩm</a>
+                        <a href="{{ route('them-loai-san-pham') }}">Thêm loại sản phẩm</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

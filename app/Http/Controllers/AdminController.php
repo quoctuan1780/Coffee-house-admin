@@ -8,6 +8,11 @@ use DB;
 
 class AdminController extends Controller
 {
+
+    public function getTrangchu(){
+        return view('admin.index');
+    }
+
     public function getSanpham(){
         $sanpham = Sanpham::all();
         $loaisp = Loaisanpham::all();
@@ -78,5 +83,42 @@ class AdminController extends Controller
             ->update(['tensp' => $req->tensp, 'maloaisp' => $req->loaisp, 'mota' => $req->mota, 'gia' => $req->gia, 'giakm' => $req->giakm,
             'hinhanh' => $req->hinhanh, 'dvt' => $req->dvt]); 
         return redirect()->back()->with(['Thanhcong' => 'Cập nhật sản phẩm thành công']);
+    }
+
+    public function getLoaisanpham(){
+        $loaisanpham = Loaisanpham::all();
+        return view('admin.loaisanpham.danhsachloaisanpham', compact('loaisanpham'));
+    }
+
+    public function getThemloaisanpham(){
+        return view('admin.loaisanpham.themloaisanpham');
+    }
+
+    public function postThemloaisanpham(Request $req){
+        $this->validate($req,
+            [
+                'tenloaisp'=>'required',
+            ],
+            [
+                'tenloaisp.required'=>'Vui lòng nhập tên loại sản phẩm',
+            ]);  
+        $loaisp = Loaisanpham::where('tenloaisp', $req->tenloaisp)->get();
+        if($loaisp == null) return redirect()->back()->with(['loi' => 'Loại sản phẩm đã tồn tại trong hệ thống']);
+        else
+            DB::table('loaisanpham')->insert(['tenloaisp' => $req->tenloaisp]);
+        return redirect()->back()->with(['thanhcong' => 'Thêm loại sản phẩm thành công']);
+    }
+
+    public function getXoaloaisanpham($maloaisp){
+        $sanpham = Sanpham::where('maloaisp', $maloaisp)->get();
+        dd($sanpham);
+        exit(0);
+        if(is_null($sanpham)){
+            DB::table('loaisanpham')->where('maloaisp', '=', $maloaisp)->delete();
+            return redirect()->back()->with(['thanhcong' => 'Xóa loại sản phẩm thành công']);
+        }
+        else{
+            return redirect()->back()->with(['loi' => 'Sản phẩm còn đang được sử dụng, vui lòng xóa các sản phẩm con trước']);
+        }
     }
 }
