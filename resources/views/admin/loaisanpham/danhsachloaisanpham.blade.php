@@ -17,14 +17,16 @@
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
-                    <tr align="center">
-                        <th style="width: 30px">ID</th>
+                    <tr >
+                        <th style="width: 30px; text-align: center">ID</th>
                         <th style="text-align: center">Tên loại sản phẩm</th>
+                        <th style="text-align: center">Delete</th>
+                        <th style="text-align: center">Edit</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($loaisanpham as $lsp)
-                        <tr class="odd gradeX" align="center">
+                        <tr class="odd gradeX" style="text-align: center">
                             <td>{{ $lsp->maloaisp }}</td>
                             <td>{{ $lsp->tenloaisp }}</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-loai-san-pham', $lsp->maloaisp) }}" onclick="return ConfirmDelete()">Xóa</a></td>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Sanpham;
 use App\Loaisanpham;
+use App\Ctdh;
+use App\Cthd;
 use Illuminate\Http\Request;
 use DB;
 
@@ -50,8 +52,14 @@ class AdminController extends Controller
     }
 
     public function getXoasanpham($masp){
-        DB::table('sanpham')->where('masp', '=', $masp)->delete();
-        return redirect()->back()->with(['xoathanhcong' => 'Xóa sản phẩm thành công']);
+        $check = Ctdh::where('masp', $masp)->first();
+        if(is_null($check)){
+            DB::table('Cthd')->where('masp', '=' , $masp)->update(['masp' => null]);
+            DB::table('sanpham')->where('masp', '=', $masp)->delete();
+            return redirect()->back()->with(['thanhcong' => 'Xóa sản phẩm thành công']);
+        }
+        else 
+        return redirect()->back()->with(['loi' => 'Sản phẩm còn đang được đặt hàng, không thể xóa']);
     }
 
     public function getSuasanpham()
@@ -102,7 +110,7 @@ class AdminController extends Controller
             [
                 'tenloaisp.required'=>'Vui lòng nhập tên loại sản phẩm',
             ]);  
-        $loaisp = Loaisanpham::where('tenloaisp', $req->tenloaisp)->get();
+        $loaisp = Loaisanpham::where('tenloaisp', $req->tenloaisp)->first();
         if($loaisp == null) return redirect()->back()->with(['loi' => 'Loại sản phẩm đã tồn tại trong hệ thống']);
         else
             DB::table('loaisanpham')->insert(['tenloaisp' => $req->tenloaisp]);
@@ -110,9 +118,7 @@ class AdminController extends Controller
     }
 
     public function getXoaloaisanpham($maloaisp){
-        $sanpham = Sanpham::where('maloaisp', $maloaisp)->get();
-        dd($sanpham);
-        exit(0);
+        $sanpham = Sanpham::where('maloaisp', $maloaisp)->first();
         if(is_null($sanpham)){
             DB::table('loaisanpham')->where('maloaisp', '=', $maloaisp)->delete();
             return redirect()->back()->with(['thanhcong' => 'Xóa loại sản phẩm thành công']);

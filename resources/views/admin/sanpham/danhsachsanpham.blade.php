@@ -7,8 +7,11 @@
                 <h1 class="page-header">Danh sách sản phẩm
                     {{-- <small>List</small> --}}
                 </h1>
-                @if(Session('xoathanhcong'))
-                    <div class="alert alert-success">{{ Session('xoathanhcong') }}</div>
+                @if(Session('thanhcong'))
+                    <div class="alert alert-success">{{ Session('thanhcong') }}</div>
+                @endif
+                @if(Session('loi'))
+                    <div class="alert alert-danger">{{ Session('loi') }}</div>
                 @endif
             </div>
             <!-- /.col-lg-12 -->
@@ -44,7 +47,7 @@
                             @else
                                 <td>Cũ</td>
                             @endif
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-san-pham', $sp->masp) }}">Xóa</a></td>
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-san-pham', $sp->masp) }}" onclick="return ConfirmDelete()">Xóa</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Sửa</a></td>
                         </tr>
                     @endforeach
@@ -67,3 +70,15 @@
     <!-- /.container-fluid -->
 </div>
 @endsection
+
+@section('script')
+    <script>
+        function ConfirmDelete()
+        {
+            var x = confirm("Bạn có chắc chắn muốn xóa loại sản phẩm này ?");
+            if (x)
+                return true;
+            return false;
+        }
+    </script>
+@endsection 
