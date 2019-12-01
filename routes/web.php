@@ -54,6 +54,11 @@ Route::group(['prefix' => 'admin'], function () {
 		'uses'=>'AccountController@postKhoiphuc'
 	]);
 
+	Route::get('dangxuat', [
+		'as'=>'dang-xuat',
+		'uses'=>'AccountController@getDangxuat'
+	]);
+
 	Route::group(['prefix' => 'sanpham'], function () {
 		Route::get('danhsachsanpham', [
 			'as'=>'danh-sach-san-pham',
@@ -124,6 +129,30 @@ Route::group(['prefix' => 'admin'], function () {
 		]);
 
 		Route::get('thanhtoan', 'AdminController@getThanhtoan')->name('thanhtoan');
+
+		Route::get('timkiemtrangthaiAjax', 'SearchController@getTimkiemtrangthaiAjax')->name('timkiemtrangthaiAjax');
+	});
+
+	Route::group(['prefix' => 'taikhoan'], function () {
+		Route::get('danhsachtaikhoan', [
+			'as'=>'danh-sach-tai-khoan',
+			'uses'=>'AccountController@getTaikhoan'
+		]);
+
+		Route::get('themtaikhoan', [
+			'as'=>'them-tai-khoan',
+			'uses'=>'AccountController@getThemtaikhoan'
+		]);
+
+		Route::post('themtaikhoan', [
+			'as'=>'them-tai-khoan',
+			'uses'=>'AccountController@postThemtaikhoan'
+		]);
+
+		Route::get('thongtintaikhoan/{id}', [
+			'as'=>'thong-tin-tai-khoan',
+			'uses'=>'AccountController@getThongtin'
+		]);
 	});
 });
 

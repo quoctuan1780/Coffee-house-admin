@@ -13,7 +13,7 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="{{ route('trang-chu') }}"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                <a href="{{ route('trang-chu') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Đơn hàng<span class="fa arrow"></span></a>
@@ -52,13 +52,13 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-users fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">List User</a>
+                        <a href="{{ route('danh-sach-tai-khoan') }}">Danh sách tài khoản</a>
                     </li>
                     <li>
-                        <a href="#">Add User</a>
+                        <a href="{{ route('them-tai-khoan') }}">Thêm tài khoản</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

@@ -4,9 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Danh sách sản phẩm
-                    {{-- <small>List</small> --}}
-                </h1>
+                <h1 class="page-header">Danh sách đơn hàng</h1>
                 @if(Session('thanhcong'))
                     <div class="alert alert-success">{{ Session('thanhcong') }}</div>
                 @endif
@@ -15,6 +13,16 @@
                 @endif
             </div>
             <!-- /.col-lg-12 -->
+            <div>Trạng thái thanh toán
+            <select name="trangthaithanhtoan" id="trangthaithanhtoan" class="input-sm">
+                <option value="0">Chưa thanh toán</option>
+                <option value="1">Đã thanh toán</option>
+            </select>
+            <div>
+                <br>
+            </div>
+            </div>
+            <div id="Hienthi">
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
@@ -29,44 +37,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($donhang as $dh)
-                        <tr class="odd gradeX" style="text-align: center">
-                            <td><a href="{{ route('chi-tiet-don-hang', $dh->madh) }}" >{{ $dh->madh }}</a></td>
-                            @foreach($khachhang as $kh)
-                                @if($dh->makh == $kh->makh)
-                                    <td>{{ $kh->hoten }}</td>
-                                    @break
+                        @foreach($donhang as $dh)
+                            <tr class="odd gradeX" style="text-align: center">
+                                <td><a href="{{ route('chi-tiet-don-hang', $dh->madh) }}" >{{ $dh->madh }}</a></td>
+                                @foreach($khachhang as $kh)
+                                    @if($dh->makh == $kh->makh)
+                                        <td>{{ $kh->hoten }}</td>
+                                        @break
+                                    @endif
+                                @endforeach
+                                <td>{{ $dh->ngaydat }}</td>
+                                <td>{{ $dh->tongtien }} VND</td>
+                                <td>{{ $dh->httt }}</td>
+                                @if($dh->tttt == 0)
+                                    <td class="alert alert-danger">Chưa thanh toán</td>
+                                @else
+                                    <td class="alert alert-success">Đã thanh toán</td>
                                 @endif
-                            @endforeach
-                            <td>{{ $dh->ngaydat }}</td>
-                            <td>{{ $dh->tongtien }} VND</td>
-                            <td>{{ $dh->httt }}</td>
-                            @if($dh->tttt == 0)
-                                <td class="alert alert-danger">Chưa thanh toán</td>
-                            @else
-                                <td class="alert alert-success">Đã thanh toán</td>
-                            @endif
-                            @if($dh->ghichu == null)
-                                <td>Không có</td>
-                            @else 
-                                <td>{{ $dh->ghichu }}</td>
-                            @endif
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td>
-                        </tr>
-                    @endforeach
-                    {{-- <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>BẠC SỈU</td>
-                        <td>Cà phê</td>
-                        <td>29000 VND</td>
-                        <td>0 VND</td>
-                        <td>Ly</td>
-                        <td>Cũ</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr> --}}
+                                @if($dh->ghichu == null)
+                                    <td>Không có</td>
+                                @else 
+                                    <td>{{ $dh->ghichu }}</td>
+                                @endif
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td>
+                            </tr>
+                        @endforeach
                 </tbody>
             </table>
+            </div>
         </div>
         <!-- /.row -->
     </div>
@@ -83,5 +81,20 @@
                 return true;
             return false;
         }
+        $(document).ready(function(){
+            $("#trangthaithanhtoan").change(function(){
+                var value = $(this).val();
+                $.ajax({
+                    url:"{{ route('timkiemtrangthaiAjax') }}",
+                    method:"GET",
+                    data:{value:value},
+                    success:function(data){
+                        $("#dataTables-example").fadeOut();
+                        $("#dataTables-example").fadeIn();
+                        $("#dataTables-example").html(data);
+                    }
+                });
+            });
+        });
     </script>
 @endsection 

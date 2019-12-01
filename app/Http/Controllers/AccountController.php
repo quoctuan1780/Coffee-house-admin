@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Quyen;
 use Sentinel;
 use Reminder;
 use Mail;
@@ -24,7 +25,14 @@ class AccountController extends Controller
 	
 	public function getKhoiphuc($email, $code){ 
 		return view('admin.khoiphuc', compact('email', 'code'));
-	}
+    }
+
+    public function getDangxuat(){
+        DB::table('users')->where('email', Auth::user()->email)
+                                ->update(['ttdn' => 0]);
+        Auth::logout();
+        return redirect()->route('dang-nhap');
+    }
 
 	public function postDangnhap(Request $req){
 		$this->validate($req,
@@ -40,10 +48,11 @@ class AccountController extends Controller
                 'password.max'=>'Mật khẩu không quá 20 kí tự'
             ]
         );
-
         $dangnhap = array('email'=>$req->email,'password'=>$req->password);
         if(Auth::attempt($dangnhap)){
-            return redirect()->route('danh-sach-san-pham');
+            DB::table('users')->where('email', $req->email)
+                                ->update(['ttdn' => 1]);
+            return redirect()->route('trang-chu');
         }
         else{
             return redirect()->back()->with(['message'=>'Thông tin email hoặc mật khẩu không chính xác']);
@@ -95,6 +104,48 @@ class AccountController extends Controller
     			$message->subject("$user->email, Mã khôi phục của bạn.");
     		}		
     	);
+    }
+
+    public function getTaikhoan(){
+        $taikhoan = User::all();
+        $quyen = Quyen::all();
+        return view('admin.taikhoan.danhsachtaikhoan', compact('taikhoan', 'quyen'));
+    }
+
+    public function getThemtaikhoan(){
+        return view('admin.taikhoan.themtaikhoan');
+    }
+
+    public function postThemtaikhoan(Request $req){
+        $this->validate($req,
+            [
+                'email'=>'required|email|unique:users,email',
+                'password'=>'required|min:6|max:20',
+                'tentk'=>'required',
+                're_password'=>'required|same:password'
+            ],
+            [
+                'email.required'=>'Vui lòng nhập email',
+                'email.email'=>'Không đúng định dạng email',
+                'email.unique'=>'Email đã có người sử dụng',
+                'password.required'=>'Vui lòng nhập mật khẩu',
+                're_password.same'=>'Mật khẩu không giống nhau',
+                'password.min'=>'Mật khẩu ít nhất 6 kí tự'
+            ]);
+        $user = new User();
+        $user->tentk = $req->tentk;
+        $user->email = $req->email;
+        $user->password = Hash::make($req->password);
+        $user->hinhanh = $req->hinhanh;
+        $user->maquyen = $req->maquyen;
+        $user->save();
+        return redirect()->back()->with('thanhcong','Thêm tài khoản thành công');
+    }
+
+    public function getThongtin($id){
+        $taikhoan = User::where('id', $id)->first();
+        $quyen = Quyen::where('maquyen', $taikhoan->maquyen)->first();
+        return view('admin.taikhoan.thongtintaikhoan', compact('taikhoan', 'quyen'));
     }
 
 }

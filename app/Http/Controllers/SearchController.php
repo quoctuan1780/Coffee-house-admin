@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use DB;
+use App\Khachhang;
 use App\Sanpham;
-use  App\Loaisanpham;
+use App\Donhang;
+use App\Loaisanpham;
 
 use Illuminate\Http\Request;
 
@@ -47,5 +49,46 @@ class SearchController extends Controller
             $output .= '<div class="form-group"><label>Đơn vị tính</label><input class="form-control" value="'.$data->dvt.'" name="dvt" placeholder="Ly" required /></div>';
            echo $output;
        }
+    }
+
+    public function getTimkiemtrangthaiAjax(Request $req){
+        $tttt = $req->get('value');
+        $donhang = Donhang::where('tttt', $tttt)->get();
+        $khachhang = Khachhang::all();
+        $output = '<thead>
+            <tr align="center">
+                <th style="width: 30px">ID</th>
+                <th>Khách hàng</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Hình thức thanh toán</th>
+                <th>Trạng thái thanh toán</th>
+                <th>Lời nhắn</th>
+                <th>Xóa</th>
+            </tr>
+        </thead>
+        <tbody>';
+        foreach($donhang as $dh){
+            $output .= '<tr class="odd gradeX" style="text-align: center">
+            <td><a href="donhang/chitietdonhang/'.$dh->madh.'" >'.$dh->madh.'</a></td>';
+            foreach($khachhang as $kh)
+                if($dh->makh == $kh->makh)
+                {
+                    $output .= '<td>'.$kh->hoten.'</td>';
+                    break;
+                }
+            $output .= '<td>'.$dh->ngaydat.'</td><td>'.$dh->tongtien.' VND</td><td>'.$dh->httt.'</td>';
+            if($dh->tttt == 0)
+                $output .= '<td class="alert alert-danger">Chưa thanh toán</td>';
+            else
+                $output .= '<td class="alert alert-success">Đã thanh toán</td>';
+            if($dh->ghichu == null)
+                $output .= '<td>Không có</td>';
+            else 
+                $output .= '<td>'.$dh->ghichu.'</td>';
+            $output .= '<td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td></tr>';
+        }
+        $output .= '</tbody>';
+        echo $output;
     }
 }

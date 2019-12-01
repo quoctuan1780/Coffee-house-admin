@@ -14,15 +14,20 @@
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                @if(Auth::check())
+                    <img src="AdminImage/{{ Auth::user()->hinhanh }}" class="img-circle" alt="Cinque Terre" width="40px" height="40px">     
+                    {{ Auth::user()->tentk }} <i class="fa fa-caret-down"></i>
+                @else
+                    <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
+                @endif
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i>Thông tin tài khoản</a>
+                <li><a href="{{ route('thong-tin-tai-khoan', Auth::user()->id) }}"><i class="fa fa-user fa-fw"></i>Thông tin tài khoản</a>
                 </li>
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i>Cài đặt</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="{{ route('dang-nhap') }}"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
+                <li><a href="{{ route('dang-xuat') }}"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
