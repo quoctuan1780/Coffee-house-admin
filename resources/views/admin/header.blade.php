@@ -22,8 +22,17 @@
                 @endif
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="{{ route('thong-tin-tai-khoan', Auth::user()->id) }}"><i class="fa fa-user fa-fw"></i>Thông tin tài khoản</a>
-                </li>
+                @if(Auth::check())
+                    <li>
+                        <a href="{{ route('thong-tin-tai-khoan', Auth::user()->id) }}"><i class="fa fa-user fa-fw"></i>Thông tin tài khoản</a>
+                    </li>
+                @else
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                    </li>
+                @endif
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i>Cài đặt</a>
                 </li>
                 <li class="divider"></li>
