@@ -43,6 +43,8 @@
                             <td>{{ $dh->httt }}</td>
                             @if($dh->tttt == 0)
                                 <td class="alert alert-danger">Chưa thanh toán</td>
+                            @else
+                                <td class="alert alert-success">Đã thanh toán</td>
                             @endif
                             @if($dh->ghichu == null)
                                 <td>Không có</td>
@@ -76,7 +78,7 @@
     <script>
         function ConfirmDelete()
         {
-            var x = confirm("Bạn có chắc chắn muốn xóa loại sản phẩm này ?");
+            var x = confirm("Bạn có chắc chắn muốn xóa đơn hàng này ?");
             if (x)
                 return true;
             return false;

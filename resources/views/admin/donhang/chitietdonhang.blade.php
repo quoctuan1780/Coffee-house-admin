@@ -201,22 +201,26 @@
     <script>
         $(document).ready(function(){
             $('#btnThanhtoan').click(function(){ 
-            var madh = $("#madonhang").val();
-            if(madh != '') 
-                {
-                    $.ajax({
-                        url:"{{ route('thanhtoan') }}", 
-                        method:"GET", 
-                        data:{madh:madh},
-                        success:function(data){ 
-                            var str = '<div class="alert alert-success">Xác nhận thanh toán thành công</div>';
-                            $("#thongbao").fadeIn();
-                            $("#thongbao").html(str).delay(2);
-                            location.reload().delay(3);
+            bootbox.confirm("Bạn có chắc chắn muốn xác nhận đã thanh toán đơn hàng?", function(result) {
+                if(result){
+                    var madh = $("#madonhang").val();
+                    if(madh != '') 
+                        {
+                            $.ajax({
+                                url:"{{ route('thanhtoan') }}", 
+                                method:"GET", 
+                                data:{madh:madh},
+                                success:function(data){ 
+                                    var str = '<div class="alert alert-success">Xác nhận thanh toán thành công</div>';
+                                    $("#thongbao").fadeIn();
+                                    $("#thongbao").html(str).delay(2);
+                                    location.reload().delay(3);
+                                }
+                            });
                         }
-                    });
-                }
-            }); 
+                    }
+                });  
+            });
         });
         // $('button[name="remove_levels"]').on('click', function(e) {
         //     var $form = $(this).closest('form');

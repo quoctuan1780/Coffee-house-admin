@@ -138,7 +138,8 @@ class AdminController extends Controller
 
     //Nhóm Controller đơn hàng
     public function getDonhang(){
-        $donhang = Donhang::where('tttt', 0)->get();
+        // $donhang = Donhang::where('tttt', 0)->get();
+        $donhang = Donhang::all();
         $khachhang = [];
         foreach($donhang as $dh){
             $temp = Khachhang::where('makh', $dh->makh)->first();
