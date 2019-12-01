@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Khachhang;
+use App\Donhang;
 use App\Sanpham;
 use App\Loaisanpham;
+use App\Hoadon;
 use App\Ctdh;
 use App\Cthd;
-use Illuminate\Http\Request;
 use DB;
+use Illuminate\Broadcasting\Broadcasters\PusherBroadcaster;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -14,6 +18,8 @@ class AdminController extends Controller
     public function getTrangchu(){
         return view('admin.index');
     }
+
+    //Nhóm Controller sản phẩm
 
     public function getSanpham(){
         $sanpham = Sanpham::all();
@@ -93,6 +99,8 @@ class AdminController extends Controller
         return redirect()->back()->with(['Thanhcong' => 'Cập nhật sản phẩm thành công']);
     }
 
+    //Nhóm Controller loại sản phẩm
+
     public function getLoaisanpham(){
         $loaisanpham = Loaisanpham::all();
         return view('admin.loaisanpham.danhsachloaisanpham', compact('loaisanpham'));
@@ -126,5 +134,49 @@ class AdminController extends Controller
         else{
             return redirect()->back()->with(['loi' => 'Sản phẩm còn đang được sử dụng, vui lòng xóa các sản phẩm con trước']);
         }
+    }
+
+    //Nhóm Controller đơn hàng
+    public function getDonhang(){
+        $donhang = Donhang::where('tttt', 0)->get();
+        $khachhang = [];
+        foreach($donhang as $dh){
+            $temp = Khachhang::where('makh', $dh->makh)->first();
+            array_push($khachhang, $temp);
+        }
+        return view('admin.donhang.danhsachdonhang', compact('donhang', 'khachhang'));
+    }
+
+    public function getChitietdonhang($madh){
+        $ctdh = Ctdh::where('madh', $madh)->get();
+        $sanpham = [];
+        foreach($ctdh as $ct){
+            $temp = Sanpham::where('masp', $ct->masp)->first();
+            array_push($sanpham, $temp);
+        }
+        $khachhang = DB::table('khachhang')->join('donhang', 'khachhang.makh', '=', 'donhang.makh')
+                        ->where('donhang.madh', '=', $madh)->first();
+        return view('admin.donhang.chitietdonhang', compact('ctdh', 'khachhang', 'sanpham'));
+    }
+
+    public function getThanhtoan(Request $req){
+        $ctdh = Ctdh::where('madh', $req->madh)->get();
+        $donhang = Donhang::where('madh', $req->madh)->first();
+        $hoadon = new Hoadon();
+        $hoadon->makh = $donhang->makh;
+        $hoadon->ngaythanhtoan = date('Y-m-d');
+        $hoadon->tongtien = $donhang->tongtien;
+        $hoadon->httt = $donhang->httt;
+        $hoadon->save();
+        DB::table('donhang')->where('madh', '=', $req->madh)->update(['tttt' => 1]);
+        foreach($ctdh as $ct){
+            $cthd = new Cthd();
+            $cthd->mahd = $hoadon->id;
+            $cthd->masp = $ct->masp;
+            $cthd->soluong = $ct->soluong;
+            $cthd->gia = $ct->gia;
+            $cthd->save();
+        }
+        return redirect()->back()->with(['thanhcong', 'Xác nhận thanh toán thành công']);
     }
 }

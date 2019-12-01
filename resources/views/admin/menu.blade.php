@@ -13,10 +13,19 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="{{ route('trang-chu') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="{{ route('trang-chu') }}"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Loại sản phẩm<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Đơn hàng<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ route('danh-sach-don-hang') }}">Danh sách đơn hàng</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Loại sản phẩm<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{ route('danh-sach-loai-san-pham') }}">Danh sách loại sản phẩm</a>

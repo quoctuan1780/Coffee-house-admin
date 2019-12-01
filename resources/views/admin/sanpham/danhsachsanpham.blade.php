@@ -25,8 +25,8 @@
                         <th>Giá khuyến mãi</th>
                         <th>Đơn vị tính</th>
                         <th>Trạng thái sản phẩm</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
+                        <th>Xóa</th>
+                        <th>Sửa</th>
                     </tr>
                 </thead>
                 <tbody>

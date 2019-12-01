@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Danh sách loại sản phẩm
+                <h1 class="page-header">Danh sách sản phẩm
                     {{-- <small>List</small> --}}
                 </h1>
                 @if(Session('thanhcong'))
@@ -17,20 +17,39 @@
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
-                    <tr >
-                        <th style="width: 30px; text-align: center">ID</th>
-                        <th style="text-align: center">Tên loại sản phẩm</th>
-                        <th style="text-align: center">Xóa</th>
-                        <th style="text-align: center">Sửa</th>
+                    <tr align="center">
+                        <th style="width: 30px">ID</th>
+                        <th>Khách hàng</th>
+                        <th>Ngày đặt</th>
+                        <th>Tổng tiền</th>
+                        <th>Hình thức thanh toán</th>
+                        <th>Trạng thái thanh toán</th>
+                        <th>Lời nhắn</th>
+                        <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($loaisanpham as $lsp)
+                    @foreach($donhang as $dh)
                         <tr class="odd gradeX" style="text-align: center">
-                            <td>{{ $lsp->maloaisp }}</td>
-                            <td>{{ $lsp->tenloaisp }}</td>
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-loai-san-pham', $lsp->maloaisp) }}" onclick="return ConfirmDelete()">Xóa</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Sửa</a></td>
+                            <td><a href="{{ route('chi-tiet-don-hang', $dh->madh) }}" >{{ $dh->madh }}</a></td>
+                            @foreach($khachhang as $kh)
+                                @if($dh->makh == $kh->makh)
+                                    <td>{{ $kh->hoten }}</td>
+                                    @break
+                                @endif
+                            @endforeach
+                            <td>{{ $dh->ngaydat }}</td>
+                            <td>{{ $dh->tongtien }} VND</td>
+                            <td>{{ $dh->httt }}</td>
+                            @if($dh->tttt == 0)
+                                <td class="alert alert-danger">Chưa thanh toán</td>
+                            @endif
+                            @if($dh->ghichu == null)
+                                <td>Không có</td>
+                            @else 
+                                <td>{{ $dh->ghichu }}</td>
+                            @endif
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td>
                         </tr>
                     @endforeach
                     {{-- <tr class="even gradeC" align="center">

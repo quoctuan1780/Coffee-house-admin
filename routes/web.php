@@ -111,6 +111,20 @@ Route::group(['prefix' => 'admin'], function () {
 			'uses'=>'AdminController@getXoaloaisanpham'
 		]);
 	});
+
+	Route::group(['prefix' => 'donhang'], function () {
+		Route::get('danhsachdonhang', [
+			'as'=>'danh-sach-don-hang',
+			'uses'=>'AdminController@getDonhang'
+		]);
+
+		Route::get('chitietdonhang/{madh}', [
+			'as'=>'chi-tiet-don-hang',
+			'uses'=>'AdminController@getChitietdonhang'
+		]);
+
+		Route::get('thanhtoan', 'AdminController@getThanhtoan')->name('thanhtoan');
+	});
 });
 
 
