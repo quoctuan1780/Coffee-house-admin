@@ -17,46 +17,46 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::get('dangnhap', [
+	'as'=>'dang-nhap',
+	'uses'=>'AccountController@getDangnhap'
+]);
+
+Route::post('dangnhap', [
+	'as'=>'dang-nhap',
+	'uses'=>'AccountController@postDangnhap'
+]);
+
+Route::get('quenmatkhau', [
+	'as'=>'quen-mat-khau',
+	'uses'=>'AccountController@getQuenmatkhau'
+]);
+
+Route::post('quenmatkhau', [
+	'as'=>'quen-mat-khau',
+	'uses'=>'AccountController@postQuenmatkhau'
+]);
+
+Route::get('khoiphuc/{email}/{code}', [
+	'as'=>'khoi-phuc',
+	'uses'=>'AccountController@getKhoiphuc'
+]);
+
+Route::post('khoiphuc', [
+	'as'=>'khoi-phuc',
+	'uses'=>'AccountController@postKhoiphuc'
+]);
+
+Route::get('dangxuat', [
+	'as'=>'dang-xuat',
+	'uses'=>'AccountController@getDangxuat'
+]);
+
+Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
 	Route::get('index', [
 		'as'=>'trang-chu',
 		'uses'=>'AdminController@getTrangchu'
-	]);
-
-	Route::get('dangnhap', [
-		'as'=>'dang-nhap',
-		'uses'=>'AccountController@getDangnhap'
-	]);
-	
-	Route::post('dangnhap', [
-		'as'=>'dang-nhap',
-		'uses'=>'AccountController@postDangnhap'
-	]);
-	
-	Route::get('quenmatkhau', [
-		'as'=>'quen-mat-khau',
-		'uses'=>'AccountController@getQuenmatkhau'
-	]);
-	
-	Route::post('quenmatkhau', [
-		'as'=>'quen-mat-khau',
-		'uses'=>'AccountController@postQuenmatkhau'
-	]);
-	
-	Route::get('khoiphuc/{email}/{code}', [
-		'as'=>'khoi-phuc',
-		'uses'=>'AccountController@getKhoiphuc'
-	]);
-	
-	Route::post('khoiphuc', [
-		'as'=>'khoi-phuc',
-		'uses'=>'AccountController@postKhoiphuc'
-	]);
-
-	Route::get('dangxuat', [
-		'as'=>'dang-xuat',
-		'uses'=>'AccountController@getDangxuat'
 	]);
 
 	Route::group(['prefix' => 'sanpham'], function () {
