@@ -128,6 +128,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 			'uses'=>'AdminController@getChitietdonhang'
 		]);
 
+		Route::get('donhangmoi', [
+			'as'=>'don-hang-moi',
+			'uses'=>'AdminController@getDonhangmoi'
+		]);
+
 		Route::get('thanhtoan', 'AdminController@getThanhtoan')->name('thanhtoan');
 
 		Route::get('timkiemtrangthaiAjax', 'SearchController@getTimkiemtrangthaiAjax')->name('timkiemtrangthaiAjax');

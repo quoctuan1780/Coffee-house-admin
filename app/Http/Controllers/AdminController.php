@@ -8,6 +8,7 @@ use App\Loaisanpham;
 use App\Hoadon;
 use App\Ctdh;
 use App\Cthd;
+use Carbon\Traits\Date;
 use DB;
 use Illuminate\Broadcasting\Broadcasters\PusherBroadcaster;
 use Illuminate\Http\Request;
@@ -16,7 +17,9 @@ class AdminController extends Controller
 {
 
     public function getTrangchu(){
-        return view('admin.index');
+        $date = date('Y-m-d');
+        $donhangmoi = Donhang::where('ngaydat', $date)->get();
+        return view('admin.index', compact('donhangmoi'));
     }
 
     //Nhóm Controller sản phẩm
@@ -158,6 +161,13 @@ class AdminController extends Controller
         $khachhang = DB::table('khachhang')->join('donhang', 'khachhang.makh', '=', 'donhang.makh')
                         ->where('donhang.madh', '=', $madh)->first();
         return view('admin.donhang.chitietdonhang', compact('ctdh', 'khachhang', 'sanpham'));
+    }
+
+    public function getDonhangmoi(){
+        $date = date('Y-m-d');
+        $donhangmoi = DB::table('khachhang')->join('donhang', 'khachhang.makh', '=', 'donhang.makh')
+        ->where('ngaydat', '=', $date)->get();
+        return view('admin.donhang.donhangmoi', compact('donhangmoi'));
     }
 
     public function getThanhtoan(Request $req){
