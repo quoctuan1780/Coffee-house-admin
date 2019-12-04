@@ -15,4 +15,13 @@ class ChartController extends Controller
         ->get();
         echo $chitiet;
     }
+
+    public function getDoanhthutheophantramLsp(){
+        $chitiet = DB::table('cthd')->join('sanpham', 'cthd.masp', '=', 'sanpham.masp')
+                        ->join('loaisanpham', 'sanpham.maloaisp', '=', 'loaisanpham.maloaisp')
+                        ->select(DB::raw('SUM(soluong*cthd.gia) as y'), 'tenloaisp as label', DB::raw('SUM(soluong*cthd.gia) as y1'))
+                        ->groupBy('sanpham.maloaisp', 'tenloaisp')
+                        ->get();
+        echo $chitiet;
+    }
 }

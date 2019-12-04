@@ -138,21 +138,36 @@
 
         <div class="row">
             <div class="col-lg-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default" style="width: 575px">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
+                        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Phần trăm doanh thu theo loại sản phẩm</h3>
                     </div>
                     <div class="panel-body">
-                            <div id="chart" style="height: 370px; width: 100%;"></div>
-                        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                        <div id="circleChart" style="height: 370px; width: 100%;"></div>
                         <div class="text-right">
-                            <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                            {{-- <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="col-lg-4">
+        </div>
+        <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-default" style="width: 1180px;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Doanh thu theo sản phẩm</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="barChart" style="height: 380px; width: 100%;"></div>
+                            <div class="text-right">
+                                {{-- <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {{-- <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
@@ -271,18 +286,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Doanh thu theo sản phẩm</h3>
-            <div class="panel-body" style="width: 100%">
-                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-                <div class="text-right">
-                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-        </div>
-        </div>
+            </div> --}}
 
         <!-- /.row -->
 
@@ -295,74 +299,106 @@
 
 @section('script')
 <script>
-        window.onload = function () {
 
-            var chart1 = new CanvasJS.Chart("chart", {
-                animationEnabled: true,
-                title:{
-                    text: "Thống kê Email",
-                    horizontalAlign: "left"
-                },
-                data: [{
-                    type: "doughnut",
-                    startAngle: 60,
-                    //innerRadius: 60,
-                    indexLabelFontSize: 17,
-                    indexLabel: "{label} - #percent%",
-                    toolTipContent: "<b>{label}:</b> {y} (#percent%)",
-                    dataPoints: [
-                        { y: 67, label: "Inbox" },
-                        { y: 28, label: "Archives" },
-                        { y: 10, label: "Labels" },
-                        { y: 7, label: "Drafts"},
-                        { y: 15, label: "Trash"},
-                        { y: 6, label: "Spam"}
-                    ]
-                }]
-            });
+    $(document).ready(function(){
+        var _token = $('input[name="_token"]').val(); 
+                $.ajax({
+                    url:"{{ route('doanhthutheophantramloaisanpham') }}", 
+                    method:"GET", 
+                    data:{_token:_token},
+                    success:function(data){ 
+                    //     var pieChart = new CanvasJS.Chart("pieChart", {
+                    //     animationEnabled: true,
+                    //     title:{
+                    //         text: "Phần trăm doanh thu theo loại sản phẩm",
+                    //         // horizontalAlign: "left"
+                    //         fontColor: 'black',
+                    //         fontFamily: 'time new roman',
+                    //         fontStyle: 'bold',
+                    //         fontSize: 26
+                    //     },
+                    //     data: [{
+                    //         type: "doughnut",
+                    //         startAngle: 60,
+                    //         //innerRadius: 60,
+                    //         indexLabelFontSize: 17,
+                    //         indexLabel: "{label} - #percent%",
+                    //         toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+                    //         dataPoints: JSON.parse(data)
+                    //     }]
 
-            chart1.render();
-            
-        }
-
-        $(document).ready(function(){
-      
-            var query = 'Send'
-            if(query != '') 
-                {
-                var _token = $('input[name="_token"]').val(); 
-                    $.ajax({
-                        url:"{{ route('doanhthutheosanpham') }}", 
-                        method:"GET", 
-                        data:{query:query, _token:_token},
-                        success:function(data){ 
-                            chitiet = data;
-                            var chart = new CanvasJS.Chart("chartContainer", {
-                            animationEnabled: true,
-                            
-                            title:{
-                                text:"Doanh thu theo sản phẩm"
-                            },
-                            axisX:{
-                                interval: 1
-                            },
-                            axisY2:{
-                                interlacedColor: "rgba(1,77,101,.2)",
-                                gridColor: "rgba(1,77,101,.1)",
-                                title: "Đơn vị tính: VNĐ"
-                            },
-                            data: [{
-                                type: "bar",
-                                name: "companies",
-                                axisYType: "secondary",
-                                color: "#014D65",
-                                dataPoints: JSON.parse(data)
-                            }]
-                        });
-                        chart.render();
-                        }
+                    // });
+                    // pieChart.render();
+                    var chitiet = JSON.parse(data);
+                    var tong = 0;
+                    for(let value of chitiet){
+                        tong += value.y;
+                    }
+                    
+                    for(i = 0; i < chitiet.length; i++){
+                        chitiet[i].y = Math.round((chitiet[i].y / tong * 100) * 100)/100;
+                    }
+                    var circleChart = new CanvasJS.Chart("circleChart", {
+                        theme: "light2", // "light1", "light2", "dark1", "dark2"
+                        exportEnabled: true,
+                        animationEnabled: true,
+                        title: {
+                            text: "Phần trăm doanh thu theo loại sản phẩm",
+                            fontFamily: 'time new roman'
+                        },
+                        data: [{
+                            type: "pie",
+                            startAngle: 25,
+                            toolTipContent: "<b>{label}</b>: {y1} VNĐ",
+                            showInLegend: "true",
+                            legendText: "{label}",
+                            indexLabelFontSize: 16,
+                            indexLabel: "{label} - {y}%",
+                            dataPoints: chitiet
+                        }]
                     });
+                    circleChart.render();
+                    }
+            });
+    });
+
+    $(document).ready(function(){
+        var _token = $('input[name="_token"]').val(); 
+            $.ajax({
+                url:"{{ route('doanhthutheosanpham') }}", 
+                method:"GET", 
+                data:{_token:_token},
+                success:function(data){ 
+                    chitiet = data;
+                    var barChart = new CanvasJS.Chart("barChart", {
+                    animationEnabled: true,
+                    
+                    title:{
+                        text:"Doanh thu theo sản phẩm",
+                        fontColor: 'black',
+                        fontFamily: 'time new roman',
+                        fontStyle: 'bold',
+                        fontSize: 26
+                    },
+                    axisX:{
+                        interval: 1
+                    },
+                    axisY2:{
+                        interlacedColor: "rgba(1,77,101,.2)",
+                        gridColor: "rgba(1,77,101,.1)",
+                        title: "Đơn vị tính: VNĐ"
+                    },
+                    data: [{
+                        type: "bar",
+                        name: "companies",
+                        axisYType: "secondary",
+                        color: "#014D65",
+                        dataPoints: JSON.parse(data)
+                    }]
+                });
+                barChart.render();
                 }
+            });
         });
-        </script>
+    </script>
 @endsection

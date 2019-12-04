@@ -162,6 +162,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
 	Route::group(['prefix' => 'thongke'], function () {
 		Route::get('doanhthutheosanpham', 'ChartController@getDoanhthutheosanpham')->name('doanhthutheosanpham');
+
+		Route::get('doanhthutheophantramloaisanpham', 'ChartController@getDoanhthutheophantramLsp')->name('doanhthutheophantramloaisanpham');
 	});
 });
 
