@@ -7,16 +7,6 @@
                 <h1 class="page-header">Đơn hàng mới</h1>
             </div>
             <!-- /.col-lg-12 -->
-            <div>Trạng thái thanh toán
-            <select name="trangthaithanhtoan" id="trangthaithanhtoan" class="input-sm">
-                <option value="0">Chưa thanh toán</option>
-                <option value="1">Đã thanh toán</option>
-            </select>
-            <div>
-                <br>
-            </div>
-            </div>
-            <div id="Hienthi">
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
@@ -54,7 +44,6 @@
                 </tbody>
             </table>
             </div>
-        </div>
         <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
@@ -70,20 +59,5 @@
                 return true;
             return false;
         }
-        $(document).ready(function(){
-            $("#trangthaithanhtoan").change(function(){
-                var value = $(this).val();
-                $.ajax({
-                    url:"{{ route('timkiemtrangthaiAjax') }}",
-                    method:"GET",
-                    data:{value:value},
-                    success:function(data){
-                        $("#dataTables-example").fadeOut();
-                        $("#dataTables-example").fadeIn();
-                        $("#dataTables-example").html(data);
-                    }
-                });
-            });
-        });
     </script>
 @endsection 

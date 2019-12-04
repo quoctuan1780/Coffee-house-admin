@@ -3,6 +3,7 @@
 <div id="page-wrapper">
 
     <div class="container-fluid">
+    <input type="hidden" name="_token" value="{{csrf_token()}}">
 
         <!-- Page Heading -->
         <div class="row">
@@ -142,14 +143,15 @@
                         <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
                     </div>
                     <div class="panel-body">
-                        <div id="morris-donut-chart"></div>
+                            <div id="chart" style="height: 370px; width: 100%;"></div>
+                        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                         <div class="text-right">
                             <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-
+            
             <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -271,11 +273,96 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Doanh thu theo sản phẩm</h3>
+            <div class="panel-body" style="width: 100%">
+                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                <div class="text-right">
+                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+        </div>
+        </div>
+
         <!-- /.row -->
 
     </div>
     <!-- /.container-fluid -->
 
 </div>
-<!-- /#p
+
+@endsection
+
+@section('script')
+<script>
+        window.onload = function () {
+
+            var chart1 = new CanvasJS.Chart("chart", {
+                animationEnabled: true,
+                title:{
+                    text: "Thống kê Email",
+                    horizontalAlign: "left"
+                },
+                data: [{
+                    type: "doughnut",
+                    startAngle: 60,
+                    //innerRadius: 60,
+                    indexLabelFontSize: 17,
+                    indexLabel: "{label} - #percent%",
+                    toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+                    dataPoints: [
+                        { y: 67, label: "Inbox" },
+                        { y: 28, label: "Archives" },
+                        { y: 10, label: "Labels" },
+                        { y: 7, label: "Drafts"},
+                        { y: 15, label: "Trash"},
+                        { y: 6, label: "Spam"}
+                    ]
+                }]
+            });
+
+            chart1.render();
+            
+        }
+
+        $(document).ready(function(){
+      
+            var query = 'Send'
+            if(query != '') 
+                {
+                var _token = $('input[name="_token"]').val(); 
+                    $.ajax({
+                        url:"{{ route('doanhthutheosanpham') }}", 
+                        method:"GET", 
+                        data:{query:query, _token:_token},
+                        success:function(data){ 
+                            chitiet = data;
+                            var chart = new CanvasJS.Chart("chartContainer", {
+                            animationEnabled: true,
+                            
+                            title:{
+                                text:"Doanh thu theo sản phẩm"
+                            },
+                            axisX:{
+                                interval: 1
+                            },
+                            axisY2:{
+                                interlacedColor: "rgba(1,77,101,.2)",
+                                gridColor: "rgba(1,77,101,.1)",
+                                title: "Đơn vị tính: VNĐ"
+                            },
+                            data: [{
+                                type: "bar",
+                                name: "companies",
+                                axisYType: "secondary",
+                                color: "#014D65",
+                                dataPoints: JSON.parse(data)
+                            }]
+                        });
+                        chart.render();
+                        }
+                    });
+                }
+        });
+        </script>
 @endsection
