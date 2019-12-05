@@ -18,7 +18,7 @@ class AdminLoginMiddleware
     {
         if(Auth::check()){
             $user = Auth::user();
-            if($user->maquyen == 1)
+            if($user->maquyen == 1 || $user->maquyen == 3)
                 return $next($request);
             else return redirect('dangnhap');
         }

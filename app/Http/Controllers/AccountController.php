@@ -148,4 +148,13 @@ class AccountController extends Controller
         return view('admin.taikhoan.thongtintaikhoan', compact('taikhoan', 'quyen'));
     }
 
+    public function getXoataikhoan($id){
+        $user = User::where('id', $id)->first();
+        if($user->ttdn == 1)
+            return redirect()->back()->with(['loi'=>'Tài khoản còn đang dùng, không thể xóa']);
+        else
+            DB::table('users')->where('id', '=', $id)->delete();
+        return redirect()->back()->with(['thanhcong'=>'Xóa tài khoản thành công']);
+    }
+
 }

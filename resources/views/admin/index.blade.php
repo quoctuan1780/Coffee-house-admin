@@ -8,9 +8,7 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    Dashboard <small>Statistics Overview</small>
-                </h1>
+                <h1 class="page-header">Dashboard</h1>
                 <ol class="breadcrumb">
                     <li class="active">
                         <i class="fa fa-dashboard"></i> Dashboard
@@ -136,7 +134,7 @@
         </div> --}}
         <!-- /.row -->
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-4">
                 <div class="panel panel-default" style="width: 575px">
                     <div class="panel-heading">
@@ -145,12 +143,12 @@
                     <div class="panel-body">
                         <div id="circleChart" style="height: 370px; width: 100%;"></div>
                         <div class="text-right">
-                            {{-- <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a> --}}
+                            <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="row">
                 <div class="col-lg-4">
                     <div class="panel panel-default" style="width: 1180px;">
@@ -300,67 +298,67 @@
 @section('script')
 <script>
 
-    $(document).ready(function(){
-        var _token = $('input[name="_token"]').val(); 
-                $.ajax({
-                    url:"{{ route('doanhthutheophantramloaisanpham') }}", 
-                    method:"GET", 
-                    data:{_token:_token},
-                    success:function(data){ 
-                    //     var pieChart = new CanvasJS.Chart("pieChart", {
-                    //     animationEnabled: true,
-                    //     title:{
-                    //         text: "Phần trăm doanh thu theo loại sản phẩm",
-                    //         // horizontalAlign: "left"
-                    //         fontColor: 'black',
-                    //         fontFamily: 'time new roman',
-                    //         fontStyle: 'bold',
-                    //         fontSize: 26
-                    //     },
-                    //     data: [{
-                    //         type: "doughnut",
-                    //         startAngle: 60,
-                    //         //innerRadius: 60,
-                    //         indexLabelFontSize: 17,
-                    //         indexLabel: "{label} - #percent%",
-                    //         toolTipContent: "<b>{label}:</b> {y} (#percent%)",
-                    //         dataPoints: JSON.parse(data)
-                    //     }]
+    // $(document).ready(function(){
+    //     var _token = $('input[name="_token"]').val(); 
+    //             $.ajax({
+    //                 url:"{{ route('doanhthutheophantramloaisanpham') }}", 
+    //                 method:"GET", 
+    //                 data:{_token:_token},
+    //                 success:function(data){ 
+    //                 //     var pieChart = new CanvasJS.Chart("pieChart", {
+    //                 //     animationEnabled: true,
+    //                 //     title:{
+    //                 //         text: "Phần trăm doanh thu theo loại sản phẩm",
+    //                 //         // horizontalAlign: "left"
+    //                 //         fontColor: 'black',
+    //                 //         fontFamily: 'time new roman',
+    //                 //         fontStyle: 'bold',
+    //                 //         fontSize: 26
+    //                 //     },
+    //                 //     data: [{
+    //                 //         type: "doughnut",
+    //                 //         startAngle: 60,
+    //                 //         //innerRadius: 60,
+    //                 //         indexLabelFontSize: 17,
+    //                 //         indexLabel: "{label} - #percent%",
+    //                 //         toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+    //                 //         dataPoints: JSON.parse(data)
+    //                 //     }]
 
-                    // });
-                    // pieChart.render();
-                    var chitiet = JSON.parse(data);
-                    var tong = 0;
-                    for(let value of chitiet){
-                        tong += value.y;
-                    }
+    //                 // });
+    //                 // pieChart.render();
+    //                 var chitiet = JSON.parse(data);
+    //                 var tong = 0;
+    //                 for(let value of chitiet){
+    //                     tong += value.y;
+    //                 }
                     
-                    for(i = 0; i < chitiet.length; i++){
-                        chitiet[i].y = Math.round((chitiet[i].y / tong * 100) * 100)/100;
-                    }
-                    var circleChart = new CanvasJS.Chart("circleChart", {
-                        theme: "light2", // "light1", "light2", "dark1", "dark2"
-                        exportEnabled: true,
-                        animationEnabled: true,
-                        title: {
-                            text: "Phần trăm doanh thu theo loại sản phẩm",
-                            fontFamily: 'time new roman'
-                        },
-                        data: [{
-                            type: "pie",
-                            startAngle: 25,
-                            toolTipContent: "<b>{label}</b>: {y1} VNĐ",
-                            showInLegend: "true",
-                            legendText: "{label}",
-                            indexLabelFontSize: 16,
-                            indexLabel: "{label} - {y}%",
-                            dataPoints: chitiet
-                        }]
-                    });
-                    circleChart.render();
-                    }
-            });
-    });
+    //                 for(i = 0; i < chitiet.length; i++){
+    //                     chitiet[i].y = Math.round((chitiet[i].y / tong * 100) * 100)/100;
+    //                 }
+    //                 var circleChart = new CanvasJS.Chart("circleChart", {
+    //                     theme: "light2", // "light1", "light2", "dark1", "dark2"
+    //                     exportEnabled: true,
+    //                     animationEnabled: true,
+    //                     title: {
+    //                         text: "Phần trăm doanh thu theo loại sản phẩm",
+    //                         fontFamily: 'time new roman'
+    //                     },
+    //                     data: [{
+    //                         type: "pie",
+    //                         startAngle: 25,
+    //                         toolTipContent: "<b>{label}</b>: {y1} VNĐ",
+    //                         showInLegend: "true",
+    //                         legendText: "{label}",
+    //                         indexLabelFontSize: 16,
+    //                         indexLabel: "{label} - {y}%",
+    //                         dataPoints: chitiet
+    //                     }]
+    //                 });
+    //                 circleChart.render();
+    //                 }
+    //         });
+    // });
 
     $(document).ready(function(){
         var _token = $('input[name="_token"]').val(); 

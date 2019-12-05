@@ -26,7 +26,7 @@
                         <th>Đơn vị tính</th>
                         <th>Trạng thái sản phẩm</th>
                         <th>Xóa</th>
-                        <th>Sửa</th>
+                        {{-- <th>Sửa</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +48,7 @@
                                 <td>Cũ</td>
                             @endif
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-san-pham', $sp->masp) }}" onclick="return ConfirmDelete()">Xóa</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Sửa</a></td>
+                            {{-- <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Sửa</a></td> --}}
                         </tr>
                     @endforeach
                     {{-- <tr class="even gradeC" align="center">

@@ -115,6 +115,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 			'as'=>'xoa-loai-san-pham',
 			'uses'=>'AdminController@getXoaloaisanpham'
 		]);
+
+		Route::get('sualoaisanpham/{maloaisp}', [
+			'as'=>'sua-loai-san-pham',
+			'uses'=>'AdminController@getSualoaisanpham'
+		]);
+
+		Route::post('sualoaisanpham', [
+			'as'=>'sua-loai-sp',
+			'uses'=>'AdminController@postSualoaisanpham'
+		]);
 	});
 
 	Route::group(['prefix' => 'donhang'], function () {
@@ -158,9 +168,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 			'as'=>'thong-tin-tai-khoan',
 			'uses'=>'AccountController@getThongtin'
 		]);
+
+		Route::get('xoataikhoan/{id}', [
+			'as'=>'xoa-tai-khoan',
+			'uses'=>'AccountController@getXoataikhoan'
+		]);
 	});
 
 	Route::group(['prefix' => 'thongke'], function () {
+		Route::get('thongkedoanhthu', [
+			'as'=>'thong-ke-doanh-thu',
+			'uses'=>'AdminController@getThongke'
+		]);
+
+		Route::get('doanhthutheonam', 'ChartController@getDoanhthutheonam')->name('doanhthutheonam');
+
 		Route::get('doanhthutheosanpham', 'ChartController@getDoanhthutheosanpham')->name('doanhthutheosanpham');
 
 		Route::get('doanhthutheophantramloaisanpham', 'ChartController@getDoanhthutheophantramLsp')->name('doanhthutheophantramloaisanpham');

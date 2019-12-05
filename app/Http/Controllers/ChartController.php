@@ -24,4 +24,15 @@ class ChartController extends Controller
                         ->get();
         echo $chitiet;
     }
+
+    public function getDoanhthutheonam(Request $req){
+        $chitiet = DB::table('cthd')->join('hoadon', 'cthd.mahd', '=', 'hoadon.mahd')
+                                    ->join('sanpham', 'cthd.masp', '=', 'sanpham.masp')
+                                    ->join('loaisanpham', 'sanpham.maloaisp', '=', 'loaisanpham.maloaisp')
+                                    ->select(DB::raw('SUM(soluong*cthd.gia) as y'), 'tenloaisp as label')
+                                    ->whereYear('ngaythanhtoan', '=', $req->nam)
+                                    ->groupBy(DB::raw('year(ngaythanhtoan)'),'sanpham.maloaisp', 'tenloaisp')
+                                    ->get();
+        echo $chitiet;
+    }
 }

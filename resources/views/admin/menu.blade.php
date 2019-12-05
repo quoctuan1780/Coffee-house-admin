@@ -52,18 +52,34 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-users fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-table fa-fw"></i> Thống kê<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ route('danh-sach-tai-khoan') }}">Danh sách tài khoản</a>
+                        <a href="{{ route('thong-ke-doanh-thu') }}">Thống kê doanh thu</a>
                     </li>
-                    <li>
-                        <a href="{{ route('them-tai-khoan') }}">Thêm tài khoản</a>
-                    </li>
+                    {{-- <li>
+                        <a href="#">Thêm tài khoản</a>
+                    </li> --}}
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            @if(Auth::user()->maquyen == 1)
+                <li>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ route('danh-sach-tai-khoan') }}">Danh sách tài khoản</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('them-tai-khoan') }}">Thêm tài khoản</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+            @endif
         </ul>
     </div>
     <!-- /.sidebar-collapse -->
 </div>
+
+

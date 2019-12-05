@@ -5,6 +5,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Danh sách tài khoản</h1>
+                @if(Session('thanhcong'))
+                    <div class="alert alert-success">{{ Session('thanhcong') }}</div>
+                @endif
+                @if(Session('loi'))
+                    <div class="alert alert-danger">{{ Session('loi') }}</div>
+                @endif
             </div>
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -36,7 +42,7 @@
                         @else
                         <td class="alert alert-success">Đang hoạt động</td>
                         @endif
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()"> Xóa</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-tai-khoan', $tk->id) }}" onclick="return ConfirmDelete()"> Xóa</a></td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#"> Sửa</a></td>
                     </tr>
                     @endforeach

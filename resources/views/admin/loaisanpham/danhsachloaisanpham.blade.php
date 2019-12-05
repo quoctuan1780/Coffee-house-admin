@@ -30,20 +30,10 @@
                             <td>{{ $lsp->maloaisp }}</td>
                             <td>{{ $lsp->tenloaisp }}</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-loai-san-pham', $lsp->maloaisp) }}" onclick="return ConfirmDelete()">Xóa</a></td>
-                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Sửa</a></td>
+                            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ route('sua-loai-san-pham', $lsp->maloaisp) }}">Sửa</a></td>
                         </tr>
                     @endforeach
-                    {{-- <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>BẠC SỈU</td>
-                        <td>Cà phê</td>
-                        <td>29000 VND</td>
-                        <td>0 VND</td>
-                        <td>Ly</td>
-                        <td>Cũ</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr> --}}
+            
                 </tbody>
             </table>
         </div>

@@ -12,13 +12,14 @@ use Carbon\Traits\Date;
 use DB;
 use Illuminate\Broadcasting\Broadcasters\PusherBroadcaster;
 use Illuminate\Http\Request;
+use Symfony\Component\VarDumper\Caster\LinkStub;
 
 class AdminController extends Controller
 {
 
     public function getTrangchu(){
         $date = date('Y-m-d');
-        $donhangmoi = Donhang::where('ngaydat', $date)->get();
+        $donhangmoi = Donhang::where('ngaydat', '=', $date, 'AND', 'tttt', '=', 0)->get();
         return view('admin.index', compact('donhangmoi'));
     }
 
@@ -139,6 +140,17 @@ class AdminController extends Controller
         }
     }
 
+    public function getSualoaisanpham($maloaisp){
+        $loaisanpham = Loaisanpham::where('maloaisp', $maloaisp)->first();
+        return view('admin.loaisanpham.sualoaisanpham', compact('loaisanpham'));
+    }
+
+    public function postSualoaisanpham(Request $req){
+        DB::table('loaisanpham')->where('maloaisp', '=', $req->maloaisp)
+                                ->update(['tenloaisp'=>$req->tenloaisp]);
+        return redirect()->back()->with(['thanhcong'=>'Sủa loại sản phẩm thành công']);
+    }
+
     //Nhóm Controller đơn hàng
     public function getDonhang(){
         // $donhang = Donhang::where('tttt', 0)->get();
@@ -189,5 +201,13 @@ class AdminController extends Controller
             $cthd->save();
         }
         return redirect()->back()->with(['thanhcong', 'Xác nhận thanh toán thành công']);
+    }
+
+    //Nhóm controller thống kê
+    public function getThongke(){
+        $nam = DB::table('hoadon')->select(DB::raw('year(ngaythanhtoan) as nam'))
+                            ->groupBy(DB::raw('year(ngaythanhtoan)'))
+                            ->get();
+        return view('admin.thongke.thongkedoanhthu', compact('nam'));
     }
 }
