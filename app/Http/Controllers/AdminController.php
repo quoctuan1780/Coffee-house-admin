@@ -210,4 +210,11 @@ class AdminController extends Controller
                             ->get();
         return view('admin.thongke.thongkedoanhthu', compact('nam'));
     }
+
+    //Nhóm controller khách hàng
+    public function getKhachhang(){
+        $khachhang = DB::table('khachhang')->leftJoin('users', 'khachhang.matk', '=', 'users.id')
+                    ->select('makh', 'hoten', 'diachi', 'gioitinh', 'sodt', 'khachhang.email', 'tentk')->get();
+        return view('admin.khachhang.danhsachkhachhang', compact('khachhang'));
+    }
 }

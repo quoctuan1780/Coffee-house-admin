@@ -91,4 +91,45 @@ class SearchController extends Controller
         $output .= '</tbody>';
         echo $output;
     }
+
+    public function getKhachhang(Request $req){
+        if ($req->value == 0)
+            $khachhang = DB::table('khachhang')->leftJoin('users', 'khachhang.matk', '=', 'users.id')
+                    ->select('makh', 'hoten', 'diachi', 'gioitinh', 'sodt', 'khachhang.email', 'tentk')->get();
+        else if($req->value == 1)
+            $khachhang = DB::table('khachhang')->join('users', 'khachhang.matk', '=', 'users.id')->get();
+        else if($req->value == 2)
+            $khachhang = Khachhang::where('matk', null)->get();
+        $output = '<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <thead>
+                        <tr align="center">
+                            <th style="width: 30px">ID</th>
+                            <th>Tên khách hàng</th>
+                            <th>Giới tính</th>
+                            <th>Dịa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Tên tài khoản</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+        foreach($khachhang as $kh){
+            $output .=  '<tr class="odd gradeX" style="text-align: center">
+                    <td>'.$kh->makh.'</td>
+                    <td>'.$kh->hoten.'</td>
+                    <td>'.$kh->gioitinh.'</td>
+                    <td>'.$kh->diachi.'</td>
+                    <td>'.$kh->sodt.'</td>
+                    <td>'.$kh->email.'</td>';
+                if($kh->tentk == null)
+                    $output .= '<td>Không có</td>';
+                else
+                    $output .=   '<td>'.$kh->tentk.'</td>';
+            $output .= '<td class="center"><i class="fa fa-trash-o  fa-fw">
+                    </i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td></tr>';     
+        }
+        $output .= '</tbody></table>';
+        echo $output;
+    }
 }

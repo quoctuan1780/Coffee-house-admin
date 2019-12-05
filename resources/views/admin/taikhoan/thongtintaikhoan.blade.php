@@ -19,7 +19,7 @@
                                 <div>Quyền: {{ $quyen->tenquyen }}</div><br>
                                 <div class="col-lg-12" style="display: inline-flex">
                                     <div class="col-lg-0">
-                                            <a href="">Đổi mật khẩu</a>
+                                            <a href="{{ route('doi-mat-khau') }}">Đổi mật khẩu</a>
                                     </div>
                                     <div class="col-lg-0" style="padding: 0px 0px 0px 10px">
                                         <a href="{{ route('dang-xuat') }}">Đăng xuất</a>

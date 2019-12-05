@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -173,6 +174,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 			'as'=>'xoa-tai-khoan',
 			'uses'=>'AccountController@getXoataikhoan'
 		]);
+
+		Route::get('doimatkhau', [
+			'as'=>'doi-mat-khau',
+			'uses'=>'AccountController@getDoimatkhau'
+		]);
+
+		Route::post('doimatkhau', [
+			'as'=>'doi-mat-khau',
+			'uses'=>'AccountController@postDoimatkhau'
+		]);
 	});
 
 	Route::group(['prefix' => 'thongke'], function () {
@@ -186,6 +197,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 		Route::get('doanhthutheosanpham', 'ChartController@getDoanhthutheosanpham')->name('doanhthutheosanpham');
 
 		Route::get('doanhthutheophantramloaisanpham', 'ChartController@getDoanhthutheophantramLsp')->name('doanhthutheophantramloaisanpham');
+	});
+
+	Route::group(['prefix' => 'khachhang'], function () {
+		Route::get('danhsachkhachhang', [
+			'as'=>'danh-sach-khach-hang',
+			'uses'=>'AdminController@getKhachhang'
+		]);
+
+		Route::get('timkiemkhachhangAjax', 'SearchController@getKhachhang')->name('timkiemkhachhangAjax');
 	});
 });
 

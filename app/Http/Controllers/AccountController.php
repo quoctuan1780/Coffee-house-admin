@@ -157,4 +157,28 @@ class AccountController extends Controller
         return redirect()->back()->with(['thanhcong'=>'Xóa tài khoản thành công']);
     }
 
+    public function getDoimatkhau(){
+        return view('admin.taikhoan.doimatkhau');
+    }
+
+    public function postDoimatkhau(Request $req){
+        if(Auth::check()){
+            if($req->password != $req->re_password)
+                return redirect()->back()->with(['loi'=>'Xác nhận mật khẩu không giống nhau']);
+            if(Hash::check($req->old_password, Auth::user()->password) == false){
+                return redirect()->back()->with(['loi'=>'Mật khẩu cũ không chính xác']);
+            }
+            else{
+                $password = Hash::make($req->password);
+
+                DB::table('users')
+                    ->where('email', Auth::user()->email)
+                    ->update(['password' => $password]);
+                    
+                return redirect()->back()->with(['thanhcong'=>'Đổi mật khẩu thành công']);
+            }
+        }
+        else return redirect()->back()->with(['loi'=>'Bạn chưa đăng nhập không thể thực hiện chức năng này']);
+    }
+
 }

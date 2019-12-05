@@ -33,7 +33,7 @@
                         </a>
                     </li>
                 @endif
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i>Cài đặt</a>
+                <li><a href="{{ route('doi-mat-khau') }}"><i class="fa fa-gear fa-fw"></i>Đổi mật khẩu</a>
                 </li>
                 <li class="divider"></li>
                 <li><a href="{{ route('dang-xuat') }}"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
