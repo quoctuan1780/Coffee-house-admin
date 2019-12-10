@@ -6,6 +6,7 @@ use App\Khachhang;
 use App\Sanpham;
 use App\Donhang;
 use App\Loaisanpham;
+use App\Phanhoi;
 
 use Illuminate\Http\Request;
 
@@ -110,7 +111,6 @@ class SearchController extends Controller
                             <th>Số điện thoại</th>
                             <th>Email</th>
                             <th>Tên tài khoản</th>
-                            <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>';
@@ -125,11 +125,87 @@ class SearchController extends Controller
                 if($kh->tentk == null)
                     $output .= '<td>Không có</td>';
                 else
-                    $output .=   '<td>'.$kh->tentk.'</td>';
-            $output .= '<td class="center"><i class="fa fa-trash-o  fa-fw">
-                    </i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td></tr>';     
+                    $output .=   '<td>'.$kh->tentk.'</td>';    
         }
         $output .= '</tbody></table>';
+        echo $output;
+    }
+
+    public function getPhanhoi(Request $req){
+        $content = Phanhoi::where('maph', $req->maph)->first();
+        $output = '
+                        <div class="row">
+                            <div>
+                                <div class="well form-horizontal">
+                                    <h2>Thông tin khách hàng</h2>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Vấn đề</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="Title" class="form-control" value="'.$content->vande.'">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Ngày phản hồi</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="CreatedDate" value="'.$content->ngayph.'">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Tên khách hàng</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="Name" value="'.$content->hoten.'">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Email</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="Email" value="'.$content->email.'">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Địa chỉ</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="Address" value="'.$content->diachi.'">
+                                        </div>
+                                    </div>
+                    
+                                    <h2>Nội dung phản hồi</h2>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Nội dung</label>
+                                        <br>
+                                            '.$content->noidung.'
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+        echo $output;     
+    }
+
+    public function getBackphanhoi(Request $req){
+        $phanhoi = Phanhoi::all();
+        $output = '<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <thead>
+                        <tr align="center">
+                            <th>Email</th>
+                            <th>Khách hàng</th>
+                            <th>Ngày phản hồi</th>
+                            <th>Vấn đề</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                            foreach($phanhoi as $ph)
+                            $output .= '
+                                <tr class="odd gradeX" style="text-align: center">
+                                    <td><a href="javascript:void(0)" id="'.$ph->maph.'" class="'.$ph->maph.'" onclick="showContent(document.getElementById('.$ph->maph.'))">'.$ph->vande.'</a></td>
+                                    <td>'.$ph->email.'</td>
+                                    <td>'.$ph->hoten.'</td>
+                                    <td>'.$ph->ngayph.'</td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td>
+                                </tr>';
+                $output .= '</tbody></table>';
         echo $output;
     }
 }

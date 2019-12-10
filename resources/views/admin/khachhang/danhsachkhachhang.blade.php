@@ -34,7 +34,6 @@
                         <th>Số điện thoại</th>
                         <th>Email</th>
                         <th>Tên tài khoản</th>
-                        <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +50,6 @@
                                 @else
                                     <td>{{ $kh->tentk }}</td>
                                 @endif
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td>
                             </tr>
                         @endforeach
                 </tbody>

@@ -8,6 +8,8 @@ use App\Loaisanpham;
 use App\Hoadon;
 use App\Ctdh;
 use App\Cthd;
+use App\Dknt;
+use App\Phanhoi;
 use Carbon\Traits\Date;
 use DB;
 use Illuminate\Broadcasting\Broadcasters\PusherBroadcaster;
@@ -20,7 +22,9 @@ class AdminController extends Controller
     public function getTrangchu(){
         $date = date('Y-m-d');
         $donhangmoi = Donhang::where('ngaydat', '=', $date, 'AND', 'tttt', '=', 0)->get();
-        return view('admin.index', compact('donhangmoi'));
+        $phanhoimoi = Phanhoi::where('ngayph', '=', $date)->get();
+        $dkntmoi = Dknt::where('ngaydk', '=', $date)->get();
+        return view('admin.index', compact('donhangmoi', 'phanhoimoi', 'dkntmoi'));
     }
 
     //Nhóm Controller sản phẩm
@@ -163,6 +167,16 @@ class AdminController extends Controller
         return view('admin.donhang.danhsachdonhang', compact('donhang', 'khachhang'));
     }
 
+    public function getXoadonhang($madh, $tttt){
+        if($tttt == 0){
+            DB::table('ctdh')->where('madh', '=', $madh)->delete();
+            DB::table('donhang')->where('madh', '=', $madh, 'AND', 'tttt', '=', $tttt)->delete();
+            return redirect()->back()->with(['thanhcong'=>'Xóa đơn hàng thành công']);
+        }
+        else
+            return redirect()->back()->with(['loi'=>'Đơn hàng đã thanh toán, không thể xóa']);
+    }
+
     public function getChitietdonhang($madh){
         $ctdh = Ctdh::where('madh', $madh)->get();
         $sanpham = [];
@@ -216,5 +230,15 @@ class AdminController extends Controller
         $khachhang = DB::table('khachhang')->leftJoin('users', 'khachhang.matk', '=', 'users.id')
                     ->select('makh', 'hoten', 'diachi', 'gioitinh', 'sodt', 'khachhang.email', 'tentk')->get();
         return view('admin.khachhang.danhsachkhachhang', compact('khachhang'));
+    }
+
+    //Nhóm controller phản hồi
+    public function getPhanhoi(){
+        $phanhoi = Phanhoi::all();
+        return view('admin.phanhoi.danhsachphanhoi', compact('phanhoi'));
+    }
+
+    public function getXoaphanhoi(){
+        
     }
 }

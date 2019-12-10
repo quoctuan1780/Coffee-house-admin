@@ -59,7 +59,7 @@
                                 @else 
                                     <td>{{ $dh->ghichu }}</td>
                                 @endif
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="donhang/xoadonhang/{{ $dh->madh }}/{{ $dh->tttt }}" onclick="return ConfirmDelete()">Xóa</a></td>
                             </tr>
                         @endforeach
                 </tbody>

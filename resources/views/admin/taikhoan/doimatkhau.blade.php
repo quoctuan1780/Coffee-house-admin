@@ -20,6 +20,10 @@
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <fieldset>
                                 <div class="form-group">
+                                    <label>Email</label>
+                                    <input class="form-control" value="{{ Auth::user()->email }}" name="email" type="email" disabled>
+                                </div>
+                                <div class="form-group">
                                     <label>Mật khẩu cũ</label>
                                     <input class="form-control" placeholder="Nhập mật khẩu cũ" name="old_password" type="password" autofocus required>
                                 </div>

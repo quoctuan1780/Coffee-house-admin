@@ -19,7 +19,7 @@
                 <a href="#"><i class="fa fa-windows fa-fw"></i> Khách hàng<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ route('danh-sach-khach-hang') }}">Danh sách khach hàng</a>
+                        <a href="{{ route('danh-sach-khach-hang') }}">Danh sách khách hàng</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -72,6 +72,18 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            <li>
+                    <a href="#"><i class="fa fa-bell-o fa-fw"></i> Phản hồi<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ route('thong-tin-phan-hoi') }}">Thông tin phản hồi</a>
+                        </li>
+                        {{-- <li>
+                            <a href="#">Thêm tài khoản</a>
+                        </li> --}}
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
             @if(Auth::user()->maquyen == 1)
                 <li>
                     <a href="#"><i class="fa fa-users fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
