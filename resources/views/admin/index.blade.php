@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="{{ route('phan-hoi-moi') }}">
                         <div class="panel-footer">
                             <span class="pull-left">Xem chi tiết</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="{{ route('dang-ki-nhan-tin-moi') }}">
                         <div class="panel-footer">
                             <span class="pull-left">Xem chi tiết</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

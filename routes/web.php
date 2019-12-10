@@ -210,6 +210,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 			'uses'=>'AdminController@getKhachhang'
 		]);
 
+		Route::get('dangkinhantin', [
+			'as'=>'dang-ki-nhan-tin',
+			'uses'=>'AdminController@getDangkinhantin'
+		]);	
+
+		Route::get('dangkinhantinmoi', [
+			'as'=>'dang-ki-nhan-tin-moi',
+			'uses'=>'AdminController@getDangkinhantinmoi'
+		]);	
+
 		Route::get('timkiemkhachhangAjax', 'SearchController@getKhachhang')->name('timkiemkhachhangAjax');
 	});
 
@@ -219,19 +229,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 			'uses'=>'AdminController@getPhanhoi'
 		]);
 
-		Route::get('chitietphanhoi', [
-			'as'=>'chi-tiet-phan-hoi',
-			'uses'=>'AdminController@getChitietphanhoi'
+		Route::get('phanhoimoi', [
+			'as'=>'phan-hoi-moi',
+			'uses'=>'AdminController@getPhanhoimoi'
 		]);
 
-		Route::get('xoaphanhoi', [
+		Route::get('xoaphanhoi/{maph}', [
 			'as'=>'xoa-phan-hoi',
 			'uses'=>'AdminController@getXoaphanhoi'
 		]);
 
 		Route::get('laynoidungAjax', 'SearchController@getPhanhoi')->name('laynoidungAjax');
-
-		Route::get('backphanhoiAjax', 'SearchController@getBackphanhoi')->name('backphanhoiAjax');
 	});
 });
 

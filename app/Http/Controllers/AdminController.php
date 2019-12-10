@@ -232,13 +232,31 @@ class AdminController extends Controller
         return view('admin.khachhang.danhsachkhachhang', compact('khachhang'));
     }
 
+    public function getDangkinhantin(){
+        $dknt = Dknt::all();
+        return view('admin.khachhang.dangkinhantin', compact('dknt'));
+    }
+
+    public function getDangkinhantinmoi(){
+        $date = date('Y-m-d');
+        $dknt = Dknt::where('ngaydk', $date)->get();
+        return view('admin.khachhang.dangkinhantin', compact('dknt'));
+    }
+
     //Nhóm controller phản hồi
     public function getPhanhoi(){
         $phanhoi = Phanhoi::all();
         return view('admin.phanhoi.danhsachphanhoi', compact('phanhoi'));
     }
 
-    public function getXoaphanhoi(){
-        
+    public function getPhanhoimoi(){
+        $date = date('Y-m-d');
+        $phanhoi = Phanhoi::where('ngayph', $date)->get();
+        return view('admin.phanhoi.phanhoimoi', compact('phanhoi'));
+    }
+
+    public function getXoaphanhoi($maph){
+        DB::table('phanhoi')->where('maph', '=', $maph)->delete();
+        return redirect()->back()->with(['thanhcong'=>'Xóa phản hồi thành công']);
     }
 }

@@ -182,30 +182,4 @@ class SearchController extends Controller
                         </div>';
         echo $output;     
     }
-
-    public function getBackphanhoi(Request $req){
-        $phanhoi = Phanhoi::all();
-        $output = '<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                    <thead>
-                        <tr align="center">
-                            <th>Email</th>
-                            <th>Khách hàng</th>
-                            <th>Ngày phản hồi</th>
-                            <th>Vấn đề</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-                            foreach($phanhoi as $ph)
-                            $output .= '
-                                <tr class="odd gradeX" style="text-align: center">
-                                    <td><a href="javascript:void(0)" id="'.$ph->maph.'" class="'.$ph->maph.'" onclick="showContent(document.getElementById('.$ph->maph.'))">'.$ph->vande.'</a></td>
-                                    <td>'.$ph->email.'</td>
-                                    <td>'.$ph->hoten.'</td>
-                                    <td>'.$ph->ngayph.'</td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td>
-                                </tr>';
-                $output .= '</tbody></table>';
-        echo $output;
-    }
 }

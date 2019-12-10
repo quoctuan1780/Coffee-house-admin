@@ -21,6 +21,9 @@
                     <li>
                         <a href="{{ route('danh-sach-khach-hang') }}">Danh sách khách hàng</a>
                     </li>
+                    <li>
+                        <a href="{{ route('dang-ki-nhan-tin') }}">Danh sách email đăng kí nhận tin</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

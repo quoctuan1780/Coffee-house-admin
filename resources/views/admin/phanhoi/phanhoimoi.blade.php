@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Thông tin phản hồi</h1>
+                <h1 class="page-header">Thông tin phản hồi mới</h1>
                 @if(Session('thanhcong'))
                     <div class="alert alert-success">{{ Session('thanhcong') }}</div>
                 @endif
