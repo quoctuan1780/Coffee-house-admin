@@ -11,6 +11,9 @@
                 @if(Session('loi'))
                     <div class="alert alert-danger">{{ Session('loi') }}</div>
                 @endif
+                @if(Session('thongbao'))
+                    <div class="alert alert-danger">{{ Session('thongbao') }}</div>
+                @endif
             </div>
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -21,7 +24,7 @@
                         <th>Quyền</th>
                         <th>Email</th>
                         <th>Trạng thái</th>
-                        <th>Xóa</th>
+                        {{-- <th>Xóa</th> --}}
                         <th>Sưa</th>
                     </tr>
                 </thead>
@@ -42,8 +45,8 @@
                         @else
                         <td class="alert alert-success">Đang hoạt động</td>
                         @endif
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-tai-khoan', $tk->id) }}" onclick="return ConfirmDelete()"> Xóa</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#"> Sửa</a></td>
+                        {{-- <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-tai-khoan', $tk->id) }}" onclick="return ConfirmDelete()"> Xóa</a></td> --}}
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('sua-tai-khoan', $tk->id)}}"> Sửa</a></td>
                     </tr>
                     @endforeach
                 </tbody>

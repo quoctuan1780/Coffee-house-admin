@@ -175,9 +175,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 			'uses'=>'AccountController@getThongtin'
 		]);
 
-		Route::get('xoataikhoan/{id}', [
-			'as'=>'xoa-tai-khoan',
-			'uses'=>'AccountController@getXoataikhoan'
+		// Route::get('xoataikhoan/{id}', [
+		// 	'as'=>'xoa-tai-khoan',
+		// 	'uses'=>'AccountController@getXoataikhoan'
+		// ]);
+
+		Route::get('suataikhoan/{matk}', [
+			'as'=>'sua-tai-khoan',
+			'uses'=>'AccountController@getSuataikhoan'
+		]);
+
+		Route::post('suataikhoan', [
+			'as'=>'sua-tai-khoan-post',
+			'uses'=>'AccountController@postSuataikhoan'
 		]);
 
 		Route::get('doimatkhau', [

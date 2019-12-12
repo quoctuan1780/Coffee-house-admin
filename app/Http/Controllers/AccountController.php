@@ -148,14 +148,14 @@ class AccountController extends Controller
         return view('admin.taikhoan.thongtintaikhoan', compact('taikhoan', 'quyen'));
     }
 
-    public function getXoataikhoan($id){
-        $user = User::where('id', $id)->first();
-        if($user->ttdn == 1)
-            return redirect()->back()->with(['loi'=>'Tài khoản còn đang dùng, không thể xóa']);
-        else
-            DB::table('users')->where('id', '=', $id)->delete();
-        return redirect()->back()->with(['thanhcong'=>'Xóa tài khoản thành công']);
-    }
+    // public function getXoataikhoan($id){
+    //     $user = User::where('id', $id)->first();
+    //     if($user->ttdn == 1)
+    //         return redirect()->back()->with(['loi'=>'Tài khoản còn đang dùng, không thể xóa']);
+    //     else
+    //         DB::table('users')->where('id', '=', $id)->delete();
+    //     return redirect()->back()->with(['thanhcong'=>'Xóa tài khoản thành công']);
+    // }
 
     public function getDoimatkhau(){
         return view('admin.taikhoan.doimatkhau');
@@ -181,4 +181,16 @@ class AccountController extends Controller
         else return redirect()->back()->with(['loi'=>'Bạn chưa đăng nhập không thể thực hiện chức năng này']);
     }
 
+    public function getSuataikhoan($matk){
+        $taikhoan = User::where('id', $matk)->first();
+        if($taikhoan->maquyen == 2) 
+            return redirect()->back()->with(['thongbao'=>'Đây là user của khách hàng, hãy để khách hàng tự động cập nhật']);
+        return view('admin.taikhoan.suataikhoan', compact('taikhoan'));
+    }
+
+    public function postSuataikhoan(Request $req){
+        DB::table('users')->where('id', $req->id)
+                            ->update(['tentk'=>$req->tentk, 'hinhanh'=>$req->hinhanh, 'maquyen'=>$req->maquyen]);
+        return redirect()->back()->with(['thanhcong'=>'Cập nhật tài khoản thành công']);
+    }
 }
