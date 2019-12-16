@@ -245,7 +245,7 @@ class AdminController extends Controller
 
     //Nhóm controller phản hồi
     public function getPhanhoi(){
-        $phanhoi = Phanhoi::all();
+        $phanhoi = Phanhoi::getAll();
         return view('admin.phanhoi.danhsachphanhoi', compact('phanhoi'));
     }
 
@@ -256,7 +256,7 @@ class AdminController extends Controller
     }
 
     public function getXoaphanhoi($maph){
-        DB::table('phanhoi')->where('maph', '=', $maph)->delete();
+        if(Phanhoi::xoaphanhoi($maph))
         return redirect()->back()->with(['thanhcong'=>'Xóa phản hồi thành công']);
     }
 }
