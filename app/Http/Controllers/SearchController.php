@@ -7,6 +7,7 @@ use App\Sanpham;
 use App\Donhang;
 use App\Loaisanpham;
 use App\Phanhoi;
+use App\Cthd;
 
 use Illuminate\Http\Request;
 
@@ -181,5 +182,114 @@ class SearchController extends Controller
                             </div>
                         </div>';
         echo $output;     
+    }
+
+    public function getChitiethoadon(Request $req){
+        $cthd = Cthd::where('mahd', $req->mahd)->get();
+        $sanpham = [];
+        foreach($cthd as $ct){
+            $temp = Sanpham::where('masp', $ct->masp)->first();
+            array_push($sanpham, $temp);
+        }
+        $khachhang = DB::table('khachhang')->join('hoadon', 'khachhang.makh', '=', 'hoadon.makh')
+                        ->where('hoadon.mahd', '=', $req->mahd)->first();
+        $output = '<div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Chi tiết hóa đơn</h1>
+                            <div id="thongbao" >
+                            </div>  
+                        </div>
+                        <div class="widget-body no-padding" style="border: 1px">
+                            <div class="widget-body-toolbar">
+                            </div>
+            
+                            <div class="padding-10">
+                                <br>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Hình ảnh</th>
+                                            <th class="text-center">Số lượng</th>
+                                            <th>Đơn giá</th>
+                                            <th>Thành tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>';
+
+                                        foreach($cthd as $ct){
+                                        $output .= '
+                                        <tr ng-repeat="item in OrderDetails" class="ng-scope">
+                                            <td>';
+                                                foreach($sanpham as $sp)
+                                                if($sp->masp == $ct->masp){
+                                                $output .= '<a href="javascript:void(0)" target="_blank" class="ng-binding">'.$sp->tensp.'</a>
+                                                    
+                                            </td>
+                                            <td><img src="product/'.$sp->hinhanh.'" class="img-responsive" style="height:40px;" ></td>';
+                                                break;
+                                            }
+                                            $output .= '
+                                            <td class="text-center"><strong class="ng-binding">'.$ct->soluong.'</strong></td>
+                                            <td class="ng-binding">'.$ct->gia.' VND</td>
+                                            <td class="text-right ng-binding">'.$ct->soluong * $ct->gia.' VND</td>
+                                        </tr>';
+                                        }
+                                    $output .= '
+                                    </tbody>
+                                    <tbody class="order-totals-summary">
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-right">Tổng giá trị sản phẩm:</td>
+                                            <td class="text-right">
+                                                <span class="ng-binding">'.$khachhang->tongtien.' VND</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right" colspan="4">Số tiền phải thanh toán:</td>
+                                            <td class="text-right">
+                                                <span class="ng-binding">'.$khachhang->tongtien.'</span>
+                                                <span>VND</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="invoice-footer">
+            
+                                    <div class="row">
+            
+                                        <div class="col-sm-7">
+                                            <div class="payment-methods">
+                                                <h5>Phương thức thanh toán</h5>
+                                                <h3><strong><span class="text-success ng-binding">'.$khachhang->httt.'</span></strong></h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="invoice-sum-total pull-right">
+                                                <h3><strong>Thanh toán: <span class="text-success ng-binding">'.$khachhang->tongtien.' VND</span></strong></h3>
+                                            </div>
+                                        </div>
+            
+                                    </div>
+            
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p class="note ng-binding"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>';
+        echo $output;
     }
 }

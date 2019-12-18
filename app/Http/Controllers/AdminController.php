@@ -259,4 +259,27 @@ class AdminController extends Controller
         if(Phanhoi::xoaphanhoi($maph))
         return redirect()->back()->with(['thanhcong'=>'Xóa phản hồi thành công']);
     }
+
+    //Nhóm controller hóa đơn
+    public function getHoadon(){
+        $hoadon = Hoadon::all();
+        $khachhang = [];
+        foreach($hoadon as $dh){
+            $temp = Khachhang::where('makh', $dh->makh)->first();
+            array_push($khachhang, $temp);
+        }
+        return view('admin.hoadon.danhsachhoadon', compact('hoadon', 'khachhang'));
+    }
+
+    public function getChitiethoadon($mahd){
+        $cthd = Cthd::where('mahd', $mahd)->get();
+        $sanpham = [];
+        foreach($cthd as $ct){
+            $temp = Sanpham::where('masp', $ct->masp)->first();
+            array_push($sanpham, $temp);
+        }
+        $khachhang = DB::table('khachhang')->join('hoadon', 'khachhang.makh', '=', 'hoadon.makh')
+                        ->where('hoadon.mahd', '=', $mahd)->first();
+        return view('admin.hoadon.chitiethoadon', compact('cthd', 'khachhang', 'sanpham'));
+    }
 }

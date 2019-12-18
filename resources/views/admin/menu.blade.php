@@ -28,15 +28,6 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-file fa-fw"></i> Đơn hàng<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ route('danh-sach-don-hang') }}">Danh sách đơn hàng</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
                 <a href="#"><i class="fa fa-list fa-fw"></i> Loại sản phẩm<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -59,6 +50,24 @@
                     </li>
                     <li>
                         <a href="{{route('sua-san-pham')}}">Sửa sản phẩm</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-file fa-fw"></i> Đơn hàng<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ route('danh-sach-don-hang') }}">Danh sách đơn hàng</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-file-text-o fa-fw"></i> Hóa đơn<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ route('danh-sach-hoa-don') }}">Danh sách hóa đơn</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

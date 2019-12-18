@@ -251,6 +251,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
 		Route::get('laynoidungAjax', 'SearchController@getPhanhoi')->name('laynoidungAjax');
 	});
+
+	Route::group(['prefix' => 'hoadon'], function () {
+		Route::get('danhsachhoadon', [
+			'as'=>'danh-sach-hoa-don',
+			'uses'=>'AdminController@getHoadon'
+		]);
+
+		Route::get('chitiethoadonAjax', 'SearchController@getChitiethoadon')->name('chitiethoadonAjax');
+	});
 });
 
 
