@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 10, 2019 lúc 02:08 PM
+-- Thời gian đã tạo: Th12 19, 2019 lúc 11:06 AM
 -- Phiên bản máy phục vụ: 10.4.8-MariaDB
 -- Phiên bản PHP: 7.3.11
 
@@ -189,6 +189,32 @@ INSERT INTO `donhang` (`madh`, `makh`, `ngaydat`, `tongtien`, `httt`, `ghichu`, 
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `gioithieu`
+--
+
+CREATE TABLE `gioithieu` (
+  `magt` int(10) UNSIGNED NOT NULL,
+  `nam` int(11) DEFAULT NULL,
+  `tieude` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `noidung` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `hinhanh` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `gioithieu`
+--
+
+INSERT INTO `gioithieu` (`magt`, `nam`, `tieude`, `noidung`, `hinhanh`, `created_at`, `updated_at`) VALUES
+(1, 2014, 'RA MẮT CỬA HÀNG ĐẦU TIÊN tại 86-88 Cao Thắng', 'Sau 3 năm, The Coffee House có hơn 60 cửa hàng tại TP Hồ Chí Minh', '2014.jpg', '2019-12-16 04:23:04', '2019-12-15 20:54:01'),
+(2, 2015, 'THE COFEE HOUSE CÓ MẶT TẠI HÀ NỘI', 'Tới nay, Nhà đã có 14 cửa hàng ở các khu vực trung tâm Thủ đô Hà Nội', '2015.jpg', '2019-12-16 04:23:04', '2019-12-15 20:54:01'),
+(3, 2017, 'XIN CHÀO ĐÀ NẴNG, BIÊN HOÀ VÀ VŨNG TÀU', 'Chúng tôi đem trải nghiệm “Đi cà phê” lan toả rộng hơn, đến Đà Nẵng, Biên Hòa và Vũng Tàu', '2017.jpg', '2019-12-16 04:23:04', '2019-12-15 20:54:01'),
+(4, 2018, 'CHINH PHỤC HÀNH TRÌNH “TỪ NÔNG TRẠI ĐẾN LY CÀ PHÊ”', 'CHÍNH THỨC VẬN HÀNH TRANG TRẠI\r\n\r\nSau khi bộ phận Cà Phê của Cầu Đất Farm được sáp nhập vào The Coffee House, dải sơn nguyên 1,650m trên cao sẽ là nơi chúng tôi gieo nên ước mơ đem hạt cà phê Việt ra ngoài thế giới.\r\n\r\nRA MẮT CỬA HÀNG FLAGSHIP THE COFFEE HOUSE SIGNATURE\r\n\r\nNơi The Coffee House chia sẻ trọn vẹn câu chuyện về đam mê cà phê với những người đồng điệu.\r\n\r\nCHÍNH THỨC CÁN MỐC 100 CỬA HÀNG\r\n\r\nSau 4 năm ra mắt và hoạt động tại Việt Nam, The Coffee House chính thức vượt ngưỡng 100 cửa hàng, với mong muốn \"Ai cũng có 1 The Coffee House gần nhà\".\r\n', '2018.jpg', '2019-12-16 04:23:04', '2019-12-15 20:54:01');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `hoadon`
 --
 
@@ -305,8 +331,7 @@ CREATE TABLE `phanhoi` (
 --
 
 INSERT INTO `phanhoi` (`maph`, `hoten`, `email`, `vande`, `noidung`, `created_at`, `updated_at`, `ngayph`) VALUES
-(1, 'Tachibaba Kanade', 'Yuuta1780@gmail.com', 'Phản hồi về cà phê', 'Cà phê của bạn rất ngon, tuy nhiên bạn nên cho ra nhiều lựa chọn về độ ngọt của cà phê nhiều hơn nữa', '2019-12-09 09:14:10', '2019-12-09 09:14:10', '2019-12-09'),
-(2, 'Tachibaba Kanade', 'Yuuta1780@gmail.com', 'Phản hồi về snack', 'Bạn nên bổ  sung thêm một số loại Snack khác nữa', '2019-12-09 09:16:31', '2019-12-09 09:16:31', '2019-12-09');
+(4, 'Tachibana Yuuta', 'admin@gmail.com', 'Bánh Snack', 'Bánh làm khá ngon, tuy nhiên bạn nên cho khách hàng thêm một vài lực chọn về các thành phần đi kèm trong đó nữa, cảm ơn bạn', '2019-12-15 08:14:31', '2019-12-15 08:14:31', '2019-12-15');
 
 -- --------------------------------------------------------
 
@@ -482,11 +507,11 @@ INSERT INTO `users` (`id`, `tentk`, `email`, `password`, `remember_token`, `crea
 (1, 'Yuuta', 'admin@gmail.com', '$2y$10$uLvNSU1W6mdobj2NgrxeuOSBTZC2fFMdYphLYmae1Yi9KM1W8Gu9e', NULL, '2019-11-26 13:34:56', '2019-11-26 13:34:56', 2, 0, NULL),
 (18, 'Yuuta', 'admin123@gmail.com', '$2y$10$Uu6QkXJ8pBHJsA.0MuBs5eHcARFyxjlvMN87cfcPG2RaBP3Gi553m', NULL, '2019-11-26 14:29:36', '2019-11-26 14:29:36', 2, 0, NULL),
 (21, 'Yuuta', 'admin1780@gmail.com', '$2y$10$Hfb666GFeByGWp7AProKi.XZqiMsJ5H5TcotQo9h3rwmUTsmy6gl6', NULL, '2019-11-27 01:45:18', '2019-11-27 01:45:18', 2, 0, NULL),
-(22, 'Quốc Tuấn', 'quoctuan1780@gmail.com', '$2y$10$jCuFxQRFYNjJq1H8.cmGy.CeoYlNIXPYY28TX0sZ4j5QoXyy3fExm', NULL, '2019-11-28 17:00:18', '2019-11-28 17:00:18', 1, 1, 'Yuuta.jpg'),
+(22, 'Quốc Tuấn', 'quoctuan1780@gmail.com', '$2y$10$t4kesD93ZEQaVib9j4Dsh.ZOtmLghTg3ernR4jnGPSQ.PPRx6Cw36', NULL, '2019-11-28 17:00:18', '2019-11-28 17:00:18', 1, 1, 'Yuuta.jpg'),
 (23, 'Yuuta', 'quoctuanlyoko@gmail.com', '$2y$10$y6qbjdlpxodZ8FWfyh1H7ORv5i0EP6UaKX/ZfBisdMn8jUJpkKjNe', NULL, '2019-11-28 17:09:47', '2019-11-28 17:09:47', 2, 0, NULL),
 (24, 'Thanh', 'admin1999@gmail.com', '$2y$10$kRWJAudVVGL2tYO/gTwDmOCICjw5zdfbo3yw20iiSlYtkIFPE.2T.', NULL, '2019-12-01 14:09:46', '2019-12-01 14:09:46', 1, 0, NULL),
 (26, 'Kanade', 'Yuuta1780@gmail.com', '$2y$10$PwU/GLD3CjTWzAMzlrFSuecv4Iyh8a40J2.RU5zSW0itLYrz/F5vK', NULL, '2019-12-04 07:23:39', '2019-12-04 07:23:39', 2, 1, NULL),
-(27, 'Tường Vy', 'Tuongvy@gmail.com', '$2y$10$lbIp2hC2B9Rm9QAyqB2f6uB6/FK.DKTYEzzOs7o2TlTKWbmKbUJxG', NULL, '2019-12-05 07:58:31', '2019-12-05 07:58:31', 3, 0, 'Alita-Battle-Angel-17.jpg');
+(27, 'Tường Vy', 'Tuongvy@gmail.com', '$2y$10$lbIp2hC2B9Rm9QAyqB2f6uB6/FK.DKTYEzzOs7o2TlTKWbmKbUJxG', NULL, '2019-12-05 07:58:31', '2019-12-05 07:58:31', 3, 1, 'Alita-Battle-Angel-17.jpg');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -521,6 +546,12 @@ ALTER TABLE `dknt`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`madh`);
+
+--
+-- Chỉ mục cho bảng `gioithieu`
+--
+ALTER TABLE `gioithieu`
+  ADD PRIMARY KEY (`magt`);
 
 --
 -- Chỉ mục cho bảng `hoadon`
@@ -620,6 +651,12 @@ ALTER TABLE `donhang`
   MODIFY `madh` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
+-- AUTO_INCREMENT cho bảng `gioithieu`
+--
+ALTER TABLE `gioithieu`
+  MODIFY `magt` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
@@ -641,13 +678,13 @@ ALTER TABLE `loaisanpham`
 -- AUTO_INCREMENT cho bảng `phanhoi`
 --
 ALTER TABLE `phanhoi`
-  MODIFY `maph` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `maph` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `reminders`
 --
 ALTER TABLE `reminders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
