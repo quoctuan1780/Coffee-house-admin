@@ -8,6 +8,7 @@ use App\Donhang;
 use App\Loaisanpham;
 use App\Phanhoi;
 use App\Cthd;
+use App\Hoadon;
 
 use Illuminate\Http\Request;
 
@@ -291,5 +292,110 @@ class SearchController extends Controller
                 <!-- /.container-fluid -->
             </div>';
         echo $output;
+    }
+
+    public function getDoanhthutheohoadon(Request $req){
+
+        if($req->value == 1) {
+            $hoadon = DB::table('hoadon')->where('ngaythanhtoan', $req->date)->get();
+            $tong = 0;
+            $stt = 0;
+            $output = '<table class="table table-hover">
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Ngày thanh toán</th>
+                <th>Hình thức thanh toán</th>
+                <th>Tổng tiền</th>
+              </tr>
+            </thead>
+            <tbody>';
+            foreach($hoadon as $hd){
+                $stt++;
+                $tong += $hd->tongtien;
+                $output .= '<tr>
+                    <td>'.$stt.'</td>
+                    <td>'.$hd->ngaythanhtoan.'</td>
+                    <td>'.$hd->httt.'</td>
+                    <td>'.$hd->tongtien.' VNĐ</td>
+                </tr>';
+            }
+            $output .= '<tr style="font-weight: bold">
+                    <td>Tổng doanh thu: </td>
+                    <td colspan="3" >'.$tong.' VNĐ</td>
+                </tr>';
+            $output .= '</tbody></table>';
+            echo $output;
+        }
+        else if($req->value == 2){
+            $hoadon = DB::table('hoadon')->select(DB::raw("year(ngaythanhtoan) as nam"), DB::raw("month(ngaythanhtoan)  as thang"), DB::raw("SUM(tongtien) as tongtien"), 'httt')
+                                        ->whereBetween('ngaythanhtoan', [$req->date['batdau'], $req->date['ketthuc']])
+                                        ->groupBy(DB::raw("year(ngaythanhtoan)"), DB::raw("month(ngaythanhtoan)"), 'httt')
+                                        ->get();
+            $tong = 0;
+            $stt = 0;
+            $output = '<table class="table table-hover">
+            <thead>
+                <tr>
+                <th>STT</th>
+                <th>Tháng</th>
+                <th>Năm</th>
+                <th>Hình thức thanh toán</th>
+                <th>Tổng tiền</th>
+                </tr>
+            </thead>
+            <tbody>';
+            foreach($hoadon as $hd){
+                $stt++;
+                $tong += $hd->tongtien;
+                $output .= '<tr>
+                    <td>'.$stt.'</td>
+                    <td>'.$hd->thang.'</td>
+                    <td>'.$hd->nam.'</td>
+                    <td>'.$hd->httt.'</td>
+                    <td>'.$hd->tongtien.' VNĐ</td>
+                </tr>';
+            }
+            $output .= '<tr style="font-weight: bold">
+                    <td>Tổng doanh thu: </td>
+                    <td colspan="3" >'.$tong.' VNĐ</td>
+                </tr>';
+            $output .= '</tbody></table>';
+            echo $output;     
+        }
+        else if($req->value == 3){
+            $hoadon = DB::table('hoadon')->select(DB::raw("year(ngaythanhtoan) as nam"), DB::raw("SUM(tongtien) as tongtien"), 'httt')
+                                        ->whereBetween('ngaythanhtoan', [$req->date['batdau'], $req->date['ketthuc']])
+                                        ->groupBy(DB::raw("year(ngaythanhtoan)"), 'httt')
+                                        ->get();
+            $tong = 0;
+            $stt = 0;
+            $output = '<table class="table table-hover">
+            <thead>
+                <tr>
+                <th>STT</th>
+                <th>Năm</th>
+                <th>Hình thức thanh toán</th>
+                <th>Tổng tiền</th>
+                </tr>
+            </thead>
+            <tbody>';
+            foreach($hoadon as $hd){
+                $stt++;
+                $tong += $hd->tongtien;
+                $output .= '<tr>
+                    <td>'.$stt.'</td>
+                    <td>'.$hd->nam.'</td>
+                    <td>'.$hd->httt.'</td>
+                    <td>'.$hd->tongtien.' VNĐ</td>
+                </tr>';
+            }
+            $output .= '<tr style="font-weight: bold">
+                    <td>Tổng doanh thu: </td>
+                    <td colspan="3" >'.$tong.' VNĐ</td>
+                </tr>';
+            $output .= '</tbody></table>';
+            echo $output;         
+        }
     }
 }

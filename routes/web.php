@@ -207,6 +207,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 			'uses'=>'AdminController@getThongke'
 		]);
 
+		Route::get('thongketheohoadon', [
+			'as'=>'thong-ke-theo-hoa-don',
+			'uses'=>'AdminController@getThongketheohoadon'
+		]);
+
+		Route::get('doanhthutheohoadonAjax', 'SearchController@getDoanhthutheohoadon')->name('doanhthutheohoadonAjax');
+
 		Route::get('doanhthutheonam', 'ChartController@getDoanhthutheonam')->name('doanhthutheonam');
 
 		Route::get('doanhthutheosanpham', 'ChartController@getDoanhthutheosanpham')->name('doanhthutheosanpham');

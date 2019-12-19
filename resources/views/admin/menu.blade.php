@@ -76,7 +76,8 @@
                 <a href="#"><i class="fa fa-table fa-fw"></i> Thống kê<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ route('thong-ke-doanh-thu') }}">Thống kê doanh thu</a>
+                        <a href="{{ route('thong-ke-doanh-thu') }}">Thống kê doanh thu (Biểu đồ)</a>
+                        <a href="{{ route('thong-ke-theo-hoa-don') }}">Thống kê doanh thu (Hóa đơn)</a>
                     </li>
                     {{-- <li>
                         <a href="#">Thêm tài khoản</a>

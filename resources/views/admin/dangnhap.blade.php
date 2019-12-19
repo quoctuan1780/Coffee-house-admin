@@ -42,12 +42,16 @@
                         <form role="form" action="{{ route('dang-nhap')}}" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <fieldset>
-                                <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus required>
                                 </div>
-                                <div class="form-group">
+                                <br>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                     <input class="form-control" placeholder="Password" name="password" type="password" required>
                                 </div>
+                                <br>
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
                             </fieldset>
                         </form>

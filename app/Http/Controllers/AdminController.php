@@ -225,6 +225,10 @@ class AdminController extends Controller
         return view('admin.thongke.thongkedoanhthu', compact('nam'));
     }
 
+    public function getThongketheohoadon(){
+        return view('admin.thongke.thongketheohoadon');
+    }
+
     //Nhóm controller khách hàng
     public function getKhachhang(){
         $khachhang = DB::table('khachhang')->leftJoin('users', 'khachhang.matk', '=', 'users.id')
