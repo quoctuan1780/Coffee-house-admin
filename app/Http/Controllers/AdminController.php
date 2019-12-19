@@ -11,7 +11,7 @@ use App\Cthd;
 use App\Dknt;
 use App\Phanhoi;
 use Carbon\Traits\Date;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Broadcasting\Broadcasters\PusherBroadcaster;
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Caster\LinkStub;

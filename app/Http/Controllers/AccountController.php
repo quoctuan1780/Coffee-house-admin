@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Quyen;
-use Sentinel;
-use Reminder;
-use Mail;
-use Hash;
-use DB;
-use Auth;
+use Cartalyst\Sentinel\Native\Facades\Sentinel;
+use Cartalyst\Sentinel\Laravel\Facades\Reminder;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
