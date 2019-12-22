@@ -201,37 +201,36 @@
     <script>
         $(document).ready(function(){
             $('#btnThanhtoan').click(function(){ 
-            bootbox.confirm("Bạn có chắc chắn muốn xác nhận đã thanh toán đơn hàng?", function(result) {
-                if(result){
+            swal({
+			  title: "Thông báo",
+			  text: "Bạn có chắc chắn muốn xác nhận thanh toán đơn hàng này ?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  	if (willDelete) {
                     var madh = $("#madonhang").val();
                     if(madh != '') 
-                        {
-                            $.ajax({
-                                url:"{{ route('thanhtoan') }}", 
-                                method:"GET", 
-                                data:{madh:madh},
-                                success:function(data){ 
-                                    var str = '<div class="alert alert-success">Xác nhận thanh toán thành công</div>';
-                                    $("#thongbao").fadeIn();
-                                    $("#thongbao").html(str).delay(2);
-                                    location.reload().delay(3);
-                                }
-                            });
-                        }
-                    }
-                });  
-            });
+                    {
+                        $.ajax({
+                            url:"{{ route('thanhtoan') }}", 
+                            method:"GET", 
+                            data:{madh:madh},
+                            success:function(data){ 
+                                // var str = '<div class="alert alert-success">Xác nhận thanh toán thành công</div>';
+                                // $("#thongbao").fadeIn();
+                                // $("#thongbao").html(str).delay(2);
+                                swal("Xác nhận thanh toán thành công", {
+                                    icon: "success",
+                                });
+                                document.getElementById('btnThanhtoan').disabled = true;    
+                            }
+                        });
+                    }      
+			  	} 
+			});
         });
-        // $('button[name="remove_levels"]').on('click', function(e) {
-        //     var $form = $(this).closest('form');
-        //     e.preventDefault();
-        //     $('#confirm').modal({
-        //         backdrop: 'static',
-        //         keyboard: false
-        //     })
-        //     .on('click', '#delete', function(e) {
-        //         $form.trigger('submit');
-        //         });
-        // });
+    });
     </script>
 @endsection 

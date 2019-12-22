@@ -72,6 +72,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
 
+    <script src="bower_components/sweetalert/docs/assets/sweetalert/sweetalert.min.js">
+
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
