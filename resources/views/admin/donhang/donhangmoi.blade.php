@@ -38,7 +38,7 @@
                                 @else 
                                     <td>{{ $dh->ghichu }}</td>
                                 @endif
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="javascript:void(0)" onclick="ConfirmDelete({{ $dh->madh }}, {{ $dh->tttt }})">Xóa</a></td>
                             </tr>
                         @endforeach
                 </tbody>
@@ -52,12 +52,43 @@
 
 @section('script')
     <script>
-        function ConfirmDelete()
+        function ConfirmDelete(madh, tttt)
         {
-            var x = confirm("Bạn có chắc chắn muốn xóa đơn hàng này ?");
-            if (x)
-                return true;
-            return false;
+            var x;
+            Swal.fire({
+            title: 'Thông báo',
+            text: "Bạn có chắc chắn muốn xóa ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý'
+            }).then((result) => {
+            if (result.value) {
+                    let timerInterval
+                    Swal.fire({
+                    title: 'Xin chờ',
+                    html: 'Xóa trong <b></b> milliseconds.',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('b')
+                            .textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                        onClose: () => {
+                            
+                            clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            document.location.href = 'donhang/xoadonhang/' + madh + '/' + tttt;
+                        }
+                    }); 
+                }
+            }); 
         }
     </script>
 @endsection 

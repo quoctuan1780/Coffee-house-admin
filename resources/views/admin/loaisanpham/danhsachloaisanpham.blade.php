@@ -29,7 +29,7 @@
                         <tr class="odd gradeX" style="text-align: center">
                             <td>{{ $lsp->maloaisp }}</td>
                             <td>{{ $lsp->tenloaisp }}</td>
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-loai-san-pham', $lsp->maloaisp) }}" onclick="return ConfirmDelete()">Xóa</a></td>
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="javascript:void(0)" onclick="ConfirmDelete({{ $lsp->maloaisp }})">Xóa</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{ route('sua-loai-san-pham', $lsp->maloaisp) }}">Sửa</a></td>
                         </tr>
                     @endforeach
@@ -45,12 +45,43 @@
 
 @section('script')
     <script>
-        function ConfirmDelete()
+        function ConfirmDelete(malsp)
         {
-            var x = confirm("Bạn có chắc chắn muốn xóa loại sản phẩm này ?");
-            if (x)
-                return true;
-            return false;
+            var x;
+            Swal.fire({
+            title: 'Thông báo',
+            text: "Bạn có chắc chắn muốn xóa ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý'
+            }).then((result) => {
+            if (result.value) {
+                    let timerInterval
+                    Swal.fire({
+                    title: 'Xin chờ',
+                    html: 'Tôi sẽ đóng trong <b></b> milliseconds.',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('b')
+                            .textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                        onClose: () => {
+                            
+                            clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            document.location.href = 'loaisanpham/xoaloaisanpham/' + malsp;
+                        }
+                    }); 
+                }
+            }); 
         }
     </script>
 @endsection 

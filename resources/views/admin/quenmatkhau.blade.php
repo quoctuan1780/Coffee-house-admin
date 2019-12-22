@@ -8,6 +8,7 @@
     <meta name="author" content="">
     <title>Quên mật khẩu</title>
     <base href="{{asset('admin')}}/">
+    <link rel="shortcut icon" type="image/ico" href="bower_components/icon/favicon.ico">
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 

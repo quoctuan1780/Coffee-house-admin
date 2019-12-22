@@ -201,15 +201,16 @@
     <script>
         $(document).ready(function(){
             $('#btnThanhtoan').click(function(){ 
-            swal({
-			  title: "Thông báo",
-			  text: "Bạn có chắc chắn muốn xác nhận thanh toán đơn hàng này ?",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willDelete) => {
-			  	if (willDelete) {
+                Swal.fire({
+                title: 'Thông báo',
+                text: "Bạn có chắc chắn muốn xác nhận thanh toán ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý'
+                }).then((result) => {
+                if (result.value) {
                     var madh = $("#madonhang").val();
                     if(madh != '') 
                     {
@@ -218,19 +219,18 @@
                             method:"GET", 
                             data:{madh:madh},
                             success:function(data){ 
-                                // var str = '<div class="alert alert-success">Xác nhận thanh toán thành công</div>';
-                                // $("#thongbao").fadeIn();
-                                // $("#thongbao").html(str).delay(2);
-                                swal("Xác nhận thanh toán thành công", {
-                                    icon: "success",
-                                });
+                                Swal.fire(
+                                    'Thông báo',
+                                    'Xác nhận thanh toán thành công',
+                                    'success'
+                                    )
                                 document.getElementById('btnThanhtoan').disabled = true;    
                             }
                         });
-                    }      
-			  	} 
-			});
-        });
+                    }  
+                }
+            });	 
+        }); 	
     });
     </script>
 @endsection 

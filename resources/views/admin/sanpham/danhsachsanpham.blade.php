@@ -47,21 +47,10 @@
                             @else
                                 <td>Cũ</td>
                             @endif
-                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{ route('xoa-san-pham', $sp->masp) }}" onclick="return ConfirmDelete()">Xóa</a></td>
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="javascript:void(0)" onclick="ConfirmDelete({{ $sp->masp }})">Xóa</a></td>
                             {{-- <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Sửa</a></td> --}}
                         </tr>
                     @endforeach
-                    {{-- <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>BẠC SỈU</td>
-                        <td>Cà phê</td>
-                        <td>29000 VND</td>
-                        <td>0 VND</td>
-                        <td>Ly</td>
-                        <td>Cũ</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr> --}}
                 </tbody>
             </table>
         </div>
@@ -73,12 +62,43 @@
 
 @section('script')
     <script>
-        function ConfirmDelete()
+        function ConfirmDelete(masp)
         {
-            var x = confirm("Bạn có chắc chắn muốn xóa loại sản phẩm này ?");
-            if (x)
-                return true;
-            return false;
+            var x;
+            Swal.fire({
+            title: 'Thông báo',
+            text: "Bạn có chắc chắn muốn xóa ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý'
+            }).then((result) => {
+            if (result.value) {
+                    let timerInterval
+                    Swal.fire({
+                    title: 'Xin chờ',
+                    html: 'Xóa trong <b></b> milliseconds.',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('b')
+                            .textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                        onClose: () => {
+                            
+                            clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            document.location.href = 'sanpham/xoasanpham/' + masp;
+                        }
+                    }); 
+                }
+            }); 
         }
     </script>
 @endsection 

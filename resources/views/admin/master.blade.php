@@ -8,6 +8,8 @@
     <meta name="author" content="">
     <title>Admin</title>
     <base href="{{asset('admin')}}/">
+
+    <link rel="shortcut icon" type="image/ico" href="bower_components/icon/favicon.ico">
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -71,9 +73,6 @@
     <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
-
-    <script src="bower_components/sweetalert/docs/assets/sweetalert/sweetalert.min.js">
-
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
@@ -82,6 +81,8 @@
         });
     });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
     @yield('script');
 </body>
 
