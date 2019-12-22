@@ -89,7 +89,7 @@ class SearchController extends Controller
                 $output .= '<td>Không có</td>';
             else 
                 $output .= '<td>'.$dh->ghichu.'</td>';
-            $output .= '<td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" onclick="return ConfirmDelete()">Xóa</a></td></tr>';
+            $output .= '<td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="javascript:void(0)" onclick="ConfirmDelete('.$dh->madh.','.$dh->tttt.')">Xóa</a></td></tr>';
         }
         $output .= '</tbody>';
         echo $output;
