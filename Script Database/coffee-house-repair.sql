@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 19, 2019 lúc 11:06 AM
+-- Thời gian đã tạo: Th12 23, 2019 lúc 03:00 AM
 -- Phiên bản máy phục vụ: 10.4.8-MariaDB
 -- Phiên bản PHP: 7.3.11
 
@@ -82,7 +82,17 @@ INSERT INTO `ctdh` (`ma_ctdh`, `madh`, `masp`, `soluong`, `gia`, `created_at`, `
 (40, 27, 40, 4, 34000, '2018-06-20 07:51:37', '2018-06-20 07:51:37'),
 (41, 27, 2, 2, 29000, '2018-06-20 07:51:37', '2018-06-20 07:51:37'),
 (42, 28, 11, 4, 45000, '2019-12-05 08:54:13', '2019-12-05 08:54:13'),
-(43, 28, 43, 3, 29000, '2019-12-05 08:54:13', '2019-12-05 08:54:13');
+(43, 28, 43, 3, 29000, '2019-12-05 08:54:13', '2019-12-05 08:54:13'),
+(45, 30, 7, 3, 42000, '2019-12-21 10:12:28', '2019-12-21 10:12:28'),
+(46, 31, 28, 2, 49000, '2019-12-22 11:16:21', '2019-12-22 11:16:21'),
+(47, 31, 30, 2, 59000, '2019-12-22 11:16:21', '2019-12-22 11:16:21'),
+(48, 31, 7, 3, 42000, '2019-12-22 11:16:21', '2019-12-22 11:16:21'),
+(54, 34, 43, 3, 29000, '2019-12-22 14:59:27', '2019-12-22 14:59:27'),
+(53, 34, 32, 4, 59000, '2019-12-22 14:59:27', '2019-12-22 14:59:27'),
+(55, 35, 13, 1, 35000, '2019-12-23 01:49:52', '2019-12-23 01:49:52'),
+(56, 36, 15, 1, 49000, '2019-12-23 01:50:42', '2019-12-23 01:50:42'),
+(57, 37, 13, 1, 35000, '2019-12-23 01:52:23', '2019-12-23 01:52:23'),
+(58, 37, 15, 1, 49000, '2019-12-23 01:52:23', '2019-12-23 01:52:23');
 
 -- --------------------------------------------------------
 
@@ -128,7 +138,16 @@ INSERT INTO `cthd` (`ma_cthd`, `mahd`, `masp`, `soluong`, `gia`, `created_at`, `
 (54, 43, 3, 2, 29000, '2017-08-02 07:53:51', '2017-08-02 07:53:51'),
 (55, 43, 5, 4, 45000, '2017-08-02 07:53:51', '2017-08-02 07:53:51'),
 (56, 44, 11, 4, 45000, '2019-12-07 00:58:25', '2019-12-07 00:58:25'),
-(57, 44, 43, 3, 29000, '2019-12-07 00:58:25', '2019-12-07 00:58:25');
+(57, 44, 43, 3, 29000, '2019-12-07 00:58:25', '2019-12-07 00:58:25'),
+(58, 45, 7, 3, 42000, '2019-12-22 11:09:51', '2019-12-22 11:09:51'),
+(59, 46, 28, 2, 49000, '2019-12-22 11:18:49', '2019-12-22 11:18:49'),
+(60, 46, 30, 2, 59000, '2019-12-22 11:18:49', '2019-12-22 11:18:49'),
+(61, 46, 7, 3, 42000, '2019-12-22 11:18:49', '2019-12-22 11:18:49'),
+(62, 47, 43, 3, 29000, '2019-12-22 14:59:40', '2019-12-22 14:59:40'),
+(63, 47, 32, 4, 59000, '2019-12-22 14:59:40', '2019-12-22 14:59:40'),
+(64, 48, 13, 1, 35000, '2019-12-23 01:50:06', '2019-12-23 01:50:06'),
+(65, 49, 13, 1, 35000, '2019-12-23 01:54:08', '2019-12-23 01:54:08'),
+(66, 49, 15, 1, 49000, '2019-12-23 01:54:08', '2019-12-23 01:54:08');
 
 -- --------------------------------------------------------
 
@@ -184,7 +203,13 @@ INSERT INTO `donhang` (`madh`, `makh`, `ngaydat`, `tongtien`, `httt`, `ghichu`, 
 (25, 28, '2017-08-01', 238000, 'ATM', NULL, '2017-08-02 07:53:51', '2017-08-01 07:48:41', 1),
 (26, 29, '2018-06-20', 392000, 'COD', 'Giao tại cổng chào nha', '2018-06-20 07:52:33', '2018-06-20 07:50:21', 1),
 (27, 24, '2018-06-20', 312000, 'ATM', 'Giao tại địa chỉ 405 - Thuận An - Bình Dương', '2018-06-20 07:52:41', '2018-06-20 07:51:37', 1),
-(28, 30, '2019-12-05', 267000, 'ATM', 'Giao tại đường số 5 đối diện cột đèn giao thông', '2019-12-07 00:58:25', '2019-12-05 08:54:13', 1);
+(28, 30, '2019-12-05', 267000, 'ATM', 'Giao tại đường số 5 đối diện cột đèn giao thông', '2019-12-07 00:58:25', '2019-12-05 08:54:13', 1),
+(30, 31, '2019-12-21', 126000, 'COD', NULL, '2019-12-22 11:09:51', '2019-12-21 10:12:28', 1),
+(31, 31, '2019-12-22', 342000, 'COD', NULL, '2019-12-22 11:18:49', '2019-12-22 11:16:21', 1),
+(34, 31, '2019-12-22', 323000, 'COD', NULL, '2019-12-22 14:59:40', '2019-12-22 14:59:27', 1),
+(35, 31, '2019-12-23', 35000, 'COD', 'Giao nhanh', '2019-12-23 01:50:06', '2019-12-23 01:49:52', 1),
+(36, 32, '2019-12-23', 49000, 'ATM', NULL, '2019-12-23 01:50:42', '2019-12-23 01:50:42', 0),
+(37, 31, '2019-12-23', 84000, 'COD', 'Giao nhanh', '2019-12-23 01:54:08', '2019-12-23 01:52:23', 1);
 
 -- --------------------------------------------------------
 
@@ -244,7 +269,12 @@ INSERT INTO `hoadon` (`mahd`, `makh`, `ngaythanhtoan`, `tongtien`, `httt`, `ghic
 (36, 24, '2019-12-04', 400000, 'ATM', NULL, '2019-12-04 09:35:17', '2019-12-04 09:35:17'),
 (35, 21, '2019-12-04', 100000, 'COD', NULL, '2019-12-04 07:53:33', '2019-12-04 07:53:33'),
 (34, 24, '2019-12-04', 119000, 'ATM', NULL, '2019-12-04 07:30:14', '2019-12-04 07:30:14'),
-(44, 30, '2019-12-07', 267000, 'ATM', NULL, '2019-12-07 00:58:25', '2019-12-07 00:58:25');
+(44, 30, '2019-12-07', 267000, 'ATM', NULL, '2019-12-07 00:58:25', '2019-12-07 00:58:25'),
+(45, 31, '2019-12-22', 126000, 'COD', NULL, '2019-12-22 11:09:51', '2019-12-22 11:09:51'),
+(46, 31, '2019-12-22', 342000, 'COD', NULL, '2019-12-22 11:18:49', '2019-12-22 11:18:49'),
+(47, 31, '2019-12-22', 323000, 'COD', NULL, '2019-12-22 14:59:40', '2019-12-22 14:59:40'),
+(48, 31, '2019-12-23', 35000, 'COD', NULL, '2019-12-23 01:50:06', '2019-12-23 01:50:06'),
+(49, 31, '2019-12-23', 84000, 'COD', NULL, '2019-12-23 01:54:08', '2019-12-23 01:54:08');
 
 -- --------------------------------------------------------
 
@@ -270,18 +300,19 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`makh`, `hoten`, `gioitinh`, `email`, `diachi`, `sodt`, `ghichu`, `created_at`, `updated_at`, `matk`) VALUES
-(17, 'Nguyễn Văn Chung', 'Nam', 'admin@gmail.com', 'TP-HCM', '0359554019', NULL, '2019-12-05 14:11:38', '2019-11-26 13:34:56', 17),
-(18, 'Trần Anh Tài', 'Nam', 'admin123@gmail.com', 'TP-HCM', '0359554019', NULL, '2019-12-05 14:10:53', '2019-11-26 14:29:36', 18),
-(19, 'Hoàng Minh Trị', 'Nam', 'admin1780@gmail.com', 'TP-HCM', '0359554019', NULL, '2019-12-05 14:11:10', '2019-11-27 01:45:18', 21),
-(21, 'Hồ Quốc Tuấn', 'Nam', 'quoctuan1780@gmail.com', 'TP-HCM', '0359554019', NULL, '2019-12-04 07:19:05', '2019-11-28 17:00:18', 22),
-(22, 'Tachibana Yuuta', 'Nam', 'quoctuanlyoko@gmail.com', 'TP-HCM', '0359554019', NULL, '2019-12-04 07:18:22', '2019-11-28 17:09:47', 23),
-(24, 'Tachibaba Kanade', 'Nữ', 'Yuuta1780@gmail.com', 'Bến Cát - Bình Dương', '0359458781', NULL, '2019-12-05 14:12:09', '2019-12-04 07:23:39', 26),
-(25, 'Nguyễn Quốc Tuấn', 'Nam', 'Quoctuan1789@gmail.com', 'Quận 4 - TP HCM', '0354879587', NULL, '2019-12-05 14:12:31', '2019-12-04 09:57:18', NULL),
-(26, 'Trần Ngọc Thùy Vân', 'Nữ', 'Thuyvan1999@gmail.com', 'Quận 7 - TP HCM', '0356548751', NULL, '2017-12-05 07:38:55', '2017-12-05 07:38:55', NULL),
-(27, 'Hoàng Thùy Dung', 'Nữ', 'Thuydung@gmail.com', 'Quận 8 - TP HCM', '0359554187', NULL, '2017-12-05 07:41:02', '2017-12-05 07:41:02', NULL),
-(28, 'Lê Anh Quân', 'Nam', 'Anhquan@gmail.com', 'Quận 3 - TP HCM', '0315421548', NULL, '2017-07-19 07:47:40', '2017-07-19 07:47:40', NULL),
-(29, 'Nguyễn Tấn Tài', 'Nam', 'Tantai@gmail.com', 'Dĩ An - Bình Dương', '0359874512', NULL, '2018-06-20 07:50:21', '2018-06-20 07:50:21', NULL),
-(30, 'Trần Hoàng Anh', 'Nam', 'Tranhoanganh@gmail.com', 'Thuận An - Bình Dương', '0712365487', NULL, '2019-12-05 08:54:13', '2019-12-05 08:54:13', NULL);
+(17, 'Trần Trọng Tiến', 'Nam', 'admin@gmail.com', 'Bình Thạnh - TP HCM', '0359541124', NULL, '2019-12-21 06:40:38', '2019-11-26 13:34:56', 17),
+(18, 'Trần Trọng Tiến Thịnh', 'Nam', 'admin123@gmail.com', 'Quận 7 - TP HCM', '0359541781', NULL, '2019-12-21 06:40:38', '2019-11-26 14:29:36', 18),
+(19, 'Hoàng Đình Trọng', 'Nam', 'admin1780@gmail.com', 'Quận 4 - TP HCM', '0359541748', NULL, '2019-12-21 06:40:38', '2019-11-27 01:45:18', 21),
+(21, 'Trần Quốc Tuấn', 'Nam', 'quoctuan1780@gmail.com', 'Bình Thạnh - TP HCM', '0359541120', NULL, '2019-12-21 06:45:54', '2019-11-28 17:00:18', 22),
+(32, 'Tran Anh Tu', 'Nam', 'Tt@gmail.com', 'Quận 7 - TP HCM', '0359415245', NULL, '2019-12-23 01:50:42', '2019-12-23 01:50:42', NULL),
+(24, 'Tachibana Yuuta', 'Nam', 'Yuuta1780@gmail.com', 'Thủ Đức - TP HCM', '0359541745', NULL, '2019-12-21 06:41:36', '2019-12-04 07:23:39', 26),
+(25, 'Trần Quốc Tuấn', 'Nam', 'Quoctuan1789@gmail.com', 'Dĩ An - Bình Dương', '0359541012', NULL, '2019-12-21 06:40:38', '2019-12-04 09:57:18', NULL),
+(26, 'Trần Ngọc Thùy Vân', 'Nữ', 'Thuyvan1999@gmail.com', 'Thủ Đức - TP HCM', '0359541754', NULL, '2019-12-21 06:40:38', '2017-12-05 07:38:55', NULL),
+(27, 'Hoàng Thùy Dung', 'Nữ', 'Thuydung@gmail.com', 'Gò Vấp - TP HCM', '0359541245', NULL, '2019-12-21 06:40:38', '2017-12-05 07:41:02', NULL),
+(28, 'Trần Anh Quân', 'Nam', 'Anhquan@gmail.com', 'Đông Hòa - Dĩ An - Bình Dương', '0359541548', NULL, '2019-12-21 06:40:38', '2017-07-19 07:47:40', NULL),
+(29, 'Nguyễn Tấn Tài', 'Nam', 'Tantai@gmail.com', 'Quận 8 - TP HCM', '0359541520', NULL, '2019-12-21 06:40:38', '2018-06-20 07:50:21', NULL),
+(30, 'Trần Hoàng Anh', 'Nam', 'Tranhoanganh@gmail.com', 'Số 402 - Quang Trung - Gò Vấp - TP HCM', '0359541120', NULL, '2019-12-21 06:40:38', '2019-12-05 08:54:13', NULL),
+(31, 'Phan Thị Tường Vy', 'Nam', 'Tuongvy1780@gmail.com', 'Bình Thạnh - TP HCM', '0359541547', NULL, '2019-12-22 12:49:07', '2019-12-20 09:17:08', 29);
 
 -- --------------------------------------------------------
 
@@ -331,7 +362,7 @@ CREATE TABLE `phanhoi` (
 --
 
 INSERT INTO `phanhoi` (`maph`, `hoten`, `email`, `vande`, `noidung`, `created_at`, `updated_at`, `ngayph`) VALUES
-(4, 'Tachibana Yuuta', 'admin@gmail.com', 'Bánh Snack', 'Bánh làm khá ngon, tuy nhiên bạn nên cho khách hàng thêm một vài lực chọn về các thành phần đi kèm trong đó nữa, cảm ơn bạn', '2019-12-15 08:14:31', '2019-12-15 08:14:31', '2019-12-15');
+(6, 'Hồ Quốc Tuấn', 'quoctuan1780@gmail.com', 'Phản hồi về cà phê', 'Ca phe ngon', '2019-12-23 01:57:53', '2019-12-23 01:57:53', '2019-12-23');
 
 -- --------------------------------------------------------
 
@@ -371,6 +402,13 @@ CREATE TABLE `reminders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `reminders`
+--
+
+INSERT INTO `reminders` (`id`, `user_id`, `code`, `completed`, `completed_at`, `created_at`, `updated_at`) VALUES
+(33, 29, 'g7WLrkFMIf2IF5lCQNrfPTKF3k4Js2MG', 0, NULL, '2019-12-22 15:26:12', '2019-12-22 15:26:12');
+
 -- --------------------------------------------------------
 
 --
@@ -396,7 +434,7 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`masp`, `tensp`, `maloaisp`, `mota`, `gia`, `giakm`, `hinhanh`, `dvt`, `moi`, `created_at`, `updated_at`) VALUES
-(1, 'AMERICANO', 1, 'Americano được pha chế bằng cách thêm nước vào một hoặc hai shot Espresso để pha loãng độ đặc của cà phê, từ đó mang lại hương vị nhẹ nhàng, không gắt mạnh và vẫn thơm nồng nàn.', 39000, 37000, 'americano_39k.jpg', 'ly', 0, '2016-10-25 20:00:16', '2016-10-24 15:11:00'),
+(1, 'AMERICANO', 1, 'Americano được pha chế bằng cách thêm nước vào một hoặc hai shot Espresso để pha loãng độ đặc của cà phê, từ đó mang lại hương vị nhẹ nhàng, không gắt mạnh và vẫn thơm nồng nàn.', 39000, 37000, 'americano_39k.jpg', 'ly', 0, '2016-10-25 13:00:16', '2016-10-24 08:11:00'),
 (2, 'BẠC SỈU', 1, 'Theo chân những người gốc Hoa đến định cư tại Sài Gòn, Bạc sỉu là cách gọi tắt của \"Bạc tẩy sỉu phé\" trong tiếng Quảng Đông, chính là: Ly sữa trắng kèm một chút cà phê.', 29000, 0, 'bacsiu_29k.jpg', 'ly', 0, '2016-10-25 20:00:16', '2016-10-24 15:11:00'),
 (3, 'CÀ PHÊ ĐEN', 1, 'Một tách cà phê đen thơm ngào ngạt, phảng phất mùi cacao là món quà tự thưởng tuyệt vời nhất cho những ai mê đắm tinh chất nguyên bản nhất của cà phê. Một tách cà phê trầm lắng, thi vị giữa dòng đời vồn vã.', 29000, 0, 'cafeden_29k.jpg', 'ly', 0, '2016-10-25 20:00:16', '2016-10-24 15:11:00'),
 (4, 'CÀ PHÊ SỮA', 1, 'Cà phê phin kết hợp cũng sữa đặc là một sáng tạo đầy tự hào của người Việt, được xem món uống thương hiệu của Việt Nam.', 29000, 0, 'cafesua_29k.jpg', 'ly', 0, '2016-10-25 20:00:16', '2016-10-24 15:11:00'),
@@ -507,11 +545,11 @@ INSERT INTO `users` (`id`, `tentk`, `email`, `password`, `remember_token`, `crea
 (1, 'Yuuta', 'admin@gmail.com', '$2y$10$uLvNSU1W6mdobj2NgrxeuOSBTZC2fFMdYphLYmae1Yi9KM1W8Gu9e', NULL, '2019-11-26 13:34:56', '2019-11-26 13:34:56', 2, 0, NULL),
 (18, 'Yuuta', 'admin123@gmail.com', '$2y$10$Uu6QkXJ8pBHJsA.0MuBs5eHcARFyxjlvMN87cfcPG2RaBP3Gi553m', NULL, '2019-11-26 14:29:36', '2019-11-26 14:29:36', 2, 0, NULL),
 (21, 'Yuuta', 'admin1780@gmail.com', '$2y$10$Hfb666GFeByGWp7AProKi.XZqiMsJ5H5TcotQo9h3rwmUTsmy6gl6', NULL, '2019-11-27 01:45:18', '2019-11-27 01:45:18', 2, 0, NULL),
-(22, 'Quốc Tuấn', 'quoctuan1780@gmail.com', '$2y$10$t4kesD93ZEQaVib9j4Dsh.ZOtmLghTg3ernR4jnGPSQ.PPRx6Cw36', NULL, '2019-11-28 17:00:18', '2019-11-28 17:00:18', 1, 1, 'Yuuta.jpg'),
+(22, 'Quốc Tuấn', 'quoctuan1780@gmail.com', '$2y$10$tgb/Z8Xg1xBG8JLfnL/xnumG2n9vHQ.O18RP72vy9icLyYKhAdtme', NULL, '2019-11-28 17:00:18', '2019-11-28 17:00:18', 1, 1, 'Yuuta.jpg'),
 (23, 'Yuuta', 'quoctuanlyoko@gmail.com', '$2y$10$y6qbjdlpxodZ8FWfyh1H7ORv5i0EP6UaKX/ZfBisdMn8jUJpkKjNe', NULL, '2019-11-28 17:09:47', '2019-11-28 17:09:47', 2, 0, NULL),
 (24, 'Thanh', 'admin1999@gmail.com', '$2y$10$kRWJAudVVGL2tYO/gTwDmOCICjw5zdfbo3yw20iiSlYtkIFPE.2T.', NULL, '2019-12-01 14:09:46', '2019-12-01 14:09:46', 1, 0, NULL),
-(26, 'Kanade', 'Yuuta1780@gmail.com', '$2y$10$PwU/GLD3CjTWzAMzlrFSuecv4Iyh8a40J2.RU5zSW0itLYrz/F5vK', NULL, '2019-12-04 07:23:39', '2019-12-04 07:23:39', 2, 1, NULL),
-(27, 'Tường Vy', 'Tuongvy@gmail.com', '$2y$10$lbIp2hC2B9Rm9QAyqB2f6uB6/FK.DKTYEzzOs7o2TlTKWbmKbUJxG', NULL, '2019-12-05 07:58:31', '2019-12-05 07:58:31', 3, 1, 'Alita-Battle-Angel-17.jpg');
+(26, 'Kanade', 'Yuuta1780@gmail.com', '$2y$10$PwU/GLD3CjTWzAMzlrFSuecv4Iyh8a40J2.RU5zSW0itLYrz/F5vK', NULL, '2019-12-04 07:23:39', '2019-12-04 07:23:39', 2, 0, NULL),
+(29, 'Tường Vy', 'Tuongvy1780@gmail.com', '$2y$10$sr66EBMffSqBzKOW5daVU.CtyjEGx7PFevvcByHwehQeVuue3EhJW', NULL, '2019-12-20 09:17:08', '2019-12-20 09:17:08', 2, 1, 'alita-battle-angel.jpg');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -630,13 +668,13 @@ ALTER TABLE `activations`
 -- AUTO_INCREMENT cho bảng `ctdh`
 --
 ALTER TABLE `ctdh`
-  MODIFY `ma_ctdh` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `ma_ctdh` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT cho bảng `cthd`
 --
 ALTER TABLE `cthd`
-  MODIFY `ma_cthd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `ma_cthd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT cho bảng `dknt`
@@ -648,7 +686,7 @@ ALTER TABLE `dknt`
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `madh` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `madh` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `gioithieu`
@@ -660,13 +698,13 @@ ALTER TABLE `gioithieu`
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `mahd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `mahd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `makh` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `makh` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisanpham`
@@ -678,13 +716,13 @@ ALTER TABLE `loaisanpham`
 -- AUTO_INCREMENT cho bảng `phanhoi`
 --
 ALTER TABLE `phanhoi`
-  MODIFY `maph` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `maph` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `reminders`
 --
 ALTER TABLE `reminders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
@@ -702,7 +740,7 @@ ALTER TABLE `slide`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
